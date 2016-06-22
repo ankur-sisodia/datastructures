@@ -75,7 +75,7 @@ public class Account {
     public void merge(Account other) {
         // TODO Put your own code here
     	this.balance = this.getBalance() + other.getBalance();
-    	other = new Account(0);
+    	other.balance = 0;
     }
 public static void main(String[] args)
 {
