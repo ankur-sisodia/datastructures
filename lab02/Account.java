@@ -37,7 +37,6 @@ public class Account {
 	 *	would leave a negative balance, print an error message and leave the
 	 *	balance unchanged.
 	 */
-	int currentBalance, leftBalance;
 	public boolean withdraw(int amount) {
 	
 		if (amount < 0) {
@@ -75,8 +74,8 @@ public class Account {
      */
     public void merge(Account other) {
         // TODO Put your own code here
-    	this.balance = this.balance + other.getBalance();
-    	other = new Account(0,other.parentAccount);
+    	this.balance = this.getBalance() + other.getBalance();
+    	other = new Account(0);
     }
 public static void main(String[] args)
 {
