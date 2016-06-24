@@ -23,6 +23,8 @@ public class DateConverter {
 
         while (dayOfYear > daysInMonth) {
             // *** Here is one place to put assignment statements.
+            month = month+1;
+            dayOfYear = dayOfYear - daysInMonth;
             if (month == 2) {
                 daysInMonth = 29;
             } else if (month == 4 || month == 6 || month == 9 || month == 11) {
@@ -31,6 +33,7 @@ public class DateConverter {
                 daysInMonth = 31;
             }
             // *** Here is another possible place to put assignment statements.
+
         }
 
         dateInMonth = dayOfYear;
