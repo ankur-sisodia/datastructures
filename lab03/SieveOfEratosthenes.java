@@ -3,11 +3,12 @@ public class SieveOfEratosthenes {
 	public static void main(String[] args) {
 		if (args.length < 1) {
 			System.out.println("You need to enter an argument!");
+			return;
 		}
         int upperBound = 0;
         try {
             upperBound = Integer.parseInt(args[0]) - 1;
-        } catch (NumberFormatException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
         }
 
