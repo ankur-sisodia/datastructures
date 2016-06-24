@@ -1,16 +1,24 @@
 public class SieveOfEratosthenes {
 
 	public static void main(String[] args) {
-		if (args.length < 1) { 
+		if (args.length < 1) {
 			System.out.println("You need to enter an argument!");
 		}
-		int upperBound = args[0];
+		int upperBound =  Integer.parseInt(args[0])-1;
+        int counter;
 		boolean[] isNotPrime = new boolean[upperBound];
-		for (int i = 0; i <= upperBound; i++) { 
+		for (int i = 0; i < upperBound; i++) {
 			if (isNotPrime[i] == true) {
 				continue;
 			} else {
-				//THIS DATA HAS BEEN CORRUPTED; REPLACE IT!
+				if (i<2){isNotPrime[i]=true;}
+                else {
+                    counter = 2 * i;
+                    while (counter < upperBound) {
+                        isNotPrime[counter] = true;
+                        counter = counter + i;
+                    }
+                }
 			}
 		}
 		for (int i = 0; i <= upperBound; i++) {
