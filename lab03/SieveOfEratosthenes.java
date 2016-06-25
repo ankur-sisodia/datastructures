@@ -13,14 +13,15 @@ public class SieveOfEratosthenes {
         }
 
         int counter;
-		boolean[] isNotPrime = new boolean[upperBound];
-		for (int i = 0; i < upperBound; i++) {
+		boolean[] isNotPrime = new boolean[upperBound+2];
+		for (int i = 0; i <= upperBound+1; i++) {
 			if (isNotPrime[i] == true) {
 				continue;
 			} else {
 				if (i<2){isNotPrime[i]=true;}
-                else {
-                    counter = 2 * i;
+				else {
+                    if(i==2){isNotPrime[i]=false;}
+					counter = 2*i;
                     while (counter < upperBound) {
                         isNotPrime[counter] = true;
                         counter = counter + i;
@@ -28,7 +29,8 @@ public class SieveOfEratosthenes {
                 }
 			}
 		}
-		for (int i = 0; i < upperBound; i++) {
+		for (int i = 0; i <= upperBound+1; i++) {
+			//System.out.println(i + "is a " + isNotPrime[i]);
 			if (!isNotPrime[i]) {
 				System.out.println(i + " is a prime number.");
 			}
