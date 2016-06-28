@@ -60,6 +60,20 @@ public class IntList {
      */
     public int get(int position) {
         // YOUR CODE HERE
+        IntList currList = new IntList(this.item, this.next);
+        if (position <0)
+            throw new IllegalArgumentException("Position is out of range!");
+        try {
+            for (int i = 0; i <=position; i++) {
+                if (i == position) {
+                    return currList.item();
+                }
+                currList = currList.next();
+            }
+        }
+        catch (Exception e) {
+            throw new IllegalArgumentException("Position is out of range!");
+        }
         return 0;
     }
 
@@ -70,8 +84,15 @@ public class IntList {
      */
     public int size() {
         // YOUR CODE HERE
-        return 0;
+        IntList currList = new IntList(this.item, this.next);
+        int sizeValue = 1;
+        while (currList.next != null) {
+            currList = currList.next();
+            sizeValue++;
+            }
+            return sizeValue++;
     }
+
 
     /**
      * Returns the string representation of the list. For the list (1, 2, 3),
@@ -80,8 +101,14 @@ public class IntList {
      * @return The String representation of the list.
      */
     public String toString() {
-        // YOUR CODE HERE
-        return null;
+        IntList currList = new IntList(this.item, this.next);
+        String s = "( ";
+        for (int i=0; i< this.size();i++){
+            s = s.concat(currList.item + " ");
+            currList = currList.next();
+        }
+        s = s.concat(")");
+        return s;
     }
 
     /**
@@ -92,7 +119,17 @@ public class IntList {
      */
     public boolean equals(Object obj) {
         // YOUR CODE HERE
-        return false;
+        IntList a = new IntList(this.item, this.next);
+        if (!(obj instanceof IntList))
+            return false;
+        IntList b = (IntList)obj;
+        if (a.size()!=b.size())
+            return false;
+        for (int i =0; i< a.size(); i++){
+            if(a.get(i) != b.get(i))
+                return false;
+        }
+        return true;
     }
 
     /**
@@ -102,6 +139,13 @@ public class IntList {
      */
     public void add(int item) {
         // YOUR CODE HERE
+        IntList a = this;
+        while (true)
+        {
+            if (a.next() == null) {break;}
+            a = a.next();
+        }
+        a.next = new IntList(item,null);
     }
 
     /**
@@ -111,7 +155,18 @@ public class IntList {
      */
     public int smallest() {
         // YOUR CODE HERE
-        return 0;
+        IntList currList = new IntList(this.item, this.next);
+        int smallest = currList.item;
+
+        while (true)
+        {
+            if (currList == null) {break;}
+            smallest = Math.min(smallest, currList.item());
+            currList = currList.next();
+
+        }
+
+        return smallest;
     }
 
     /**
@@ -121,7 +176,17 @@ public class IntList {
      */
     public int squaredSum() {
         // YOUR CODE HERE
-        return 0;
+        IntList currList = new IntList(this.item, this.next);
+        int squaredSumValue = 0;
+
+        while (true)
+        {
+            if (currList == null) {break;}
+            squaredSumValue = squaredSumValue + currList.item()*currList.item();
+            currList = currList.next();
+
+        }
+        return squaredSumValue;
     }
 
     /**
@@ -134,6 +199,29 @@ public class IntList {
      */
     public static IntList append(IntList l1, IntList l2) {
         // YOUR CODE HERE
-        return null;
+        /*IntList appendList = new IntList;
+        int head1 = l1.item(); int head2 = l2.item();
+        IntList next1 = l1.next(); IntList next2 = l2.next();
+
+        for (int i = 0; i<l1.size();i++)
+        {
+            appendList.add(l1.item());
+            l1 = l1.next();
+        }
+        for (int i = 0; i<l2.size();i++)
+        {
+            appendList.add(l2.item());
+            l2 = l2.next();
+        }
+        l1 =
+
+        return null;*/
+
+        if (l1 ==null){
+            return l2;
+        }
+        IntList appendList = new IntList(l1.item, append(l1.next,l2));
+        return appendList;
+
     }
 }
