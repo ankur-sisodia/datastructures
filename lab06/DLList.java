@@ -73,6 +73,8 @@ public class DLList {
      */
     public void insert(Object o, int position) {
         // fill me in
+        //if (position > size){insertBack(o); return;}
+
     }
 
     /**
@@ -113,6 +115,7 @@ public class DLList {
      */
     public void reverse() {
         // fill me in
+
     }
 
     public static void main(String[] args) {
