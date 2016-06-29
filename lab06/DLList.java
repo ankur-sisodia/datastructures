@@ -73,8 +73,29 @@ public class DLList {
      */
     public void insert(Object o, int position) {
         // fill me in
-        //if (position > size){insertBack(o); return;}
-
+        DLNode n = new DLNode(o, sentinel, sentinel.next);
+        if(position==0) {
+            n.next.prev = n;
+            n.prev.next = n;
+            size++;
+            return;
+        }
+        else if (position >= size) {
+            insertBack(o);
+            return;
+        }
+        else {
+            System.out.println("reached");
+            DLNode copy = sentinel;
+            for (int i=0; i< position; i++) {
+                copy = copy.next;
+            }
+            n.prev = copy;
+            n.next = copy.next;
+            copy.next = n;
+            copy.next.next.prev = n;
+            size++;
+        }
     }
 
     /**
@@ -83,6 +104,7 @@ public class DLList {
      */
     public void insertFront(Object o) {
         // fill me in
+        insert(o,0);
     }
 
     /**
@@ -91,6 +113,16 @@ public class DLList {
      */
     public void remove(Object o) {
         // fill me in
+        DLNode copy = sentinel;
+        for (int i=0; i< size; i++) {
+            if (copy.next.item.equals(o))
+            {
+                copy.next = copy.next.next;
+                copy.next.next.prev = copy;
+                size--;
+            }
+            copy = copy.next;
+        }
     }
 
     /**
@@ -100,6 +132,11 @@ public class DLList {
      */
     public void remove(DLNode n) {
         // fill me in
+        DLNode tempPrev, tempNext;
+        tempPrev = n.prev; tempNext = n.next;
+        n.prev.next = tempNext;
+        n.next.prev = tempPrev;
+        size = size - 1;
     }
 
 

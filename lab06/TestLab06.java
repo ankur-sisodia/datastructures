@@ -58,7 +58,9 @@ public class TestLab06 {
         assertEquals(l.sentinel, l.sentinel.next.next.next.next.prev.prev.prev.prev);
         l.remove(1);
         assertEquals(2, l.size);
+        System.out.println("l:" + l.toString()); //test
         l.remove(l.sentinel.next);
+        System.out.println("l:" + l.toString()); //test
         assertEquals(1, l.size);
         assertEquals(2, l.sentinel.next.item);
     }
