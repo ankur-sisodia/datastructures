@@ -132,11 +132,23 @@ public class DLList {
      */
     public void remove(DLNode n) {
         // fill me in
-        DLNode tempPrev, tempNext;
-        tempPrev = n.prev; tempNext = n.next;
-        n.prev.next = tempNext;
-        n.next.prev = tempPrev;
-        size = size - 1;
+        //DLNode tempPrev, tempNext;
+        //tempPrev = n.prev; tempNext = n.next;
+        //n.prev.next = tempNext;
+        //n.next.prev = tempPrev;
+        System.out.println("DLNode: "+ this.toString());
+        DLNode curr = sentinel.next;
+        while (curr!= sentinel){
+            if(n.item == curr.item){
+                curr.prev.next = curr.next;
+                curr.next.prev = curr.prev;
+                size--;
+                return;
+            }
+            curr = curr.next;
+        }
+        System.out.println("DLNode: "+ this.toString());
+        return;
     }
 
 
@@ -145,6 +157,19 @@ public class DLList {
      */
     public void doubleInPlace() {
         // fill me in
+        DLNode current = sentinel.next;
+        DLNode prev = current.prev;
+
+        while (current != sentinel){
+            DLNode n = new DLNode(current.item, prev,current);
+            prev.next = n;
+            current.prev = n;
+            size++;
+
+            prev = current;
+            current = current.next;
+        }
+        return;
     }
 
     /**
@@ -152,6 +177,16 @@ public class DLList {
      */
     public void reverse() {
         // fill me in
+        DLNode current = sentinel.next;
+        sentinel.next = sentinel.prev;
+        sentinel.prev = current;
+
+        while (current!=sentinel){
+            DLNode tempNode = current.prev;
+            current.prev = current.next;
+            current.next = tempNode;
+            current = current.prev;
+        }
 
     }
 
