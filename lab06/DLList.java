@@ -113,16 +113,28 @@ public class DLList {
      */
     public void remove(Object o) {
         // fill me in
-        DLNode copy = sentinel;
+        DLNode current = sentinel.next;
+        while (current != sentinel){
+            if (o == current.item){
+                current.prev.next = current.next;
+                current.next.prev = current.prev;
+                size --;
+            }
+            current = current.next;
+        }
+        return;
+
+        /*DLNode copy = sentinel.next;
         for (int i=0; i< size; i++) {
-            if (copy.next.item.equals(o))
+            if (copy.item.equals(o))
             {
-                copy.next = copy.next.next;
-                copy.next.next.prev = copy;
+                copy.prev.next = copy.next;
+                copy.next.prev = copy.prev;
                 size--;
             }
             copy = copy.next;
         }
+        return;*/
     }
 
     /**
