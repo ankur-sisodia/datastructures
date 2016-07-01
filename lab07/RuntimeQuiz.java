@@ -45,8 +45,8 @@ public class RuntimeQuiz {
         return f3(array, start, mid) + f3(array, mid + 1, end);
     }
 
-    public static Asymptotic f4_notation;
-    public static Runtime f4_runtime;
+    public static Asymptotic f4_notation = Asymptotic.BIG_THETA;
+    public static Runtime f4_runtime = Runtime.LOGLINEAR;
     /* When f4 is first called, start will be 0 and end will be the length of the array - 1 */
     public int f4(char[] array, int start, int end) {
         if (array.length <= 1 || end <= start) return 1;
@@ -58,8 +58,8 @@ public class RuntimeQuiz {
         return counter + f4(array, start, mid) + f4(array, mid + 1, end);
     }
 
-    public static Asymptotic f5_notation;
-    public static Runtime f5_runtime;
+    public static Asymptotic f5_notation = Asymptotic.BIG_THETA;
+    public static Runtime f5_runtime = Runtime.LOGLINEAR;
     public void f5(int n) {
         int[] array = {1, 2, 3};
         while (n > 0) {
@@ -68,8 +68,8 @@ public class RuntimeQuiz {
         }
     }
 
-    public static Asymptotic f6_notation;
-    public static Runtime f6_runtime;
+    public static Asymptotic f6_notation = Asymptotic.BIG_O;
+    public static Runtime f6_runtime = Runtime.LINEAR;
     public void f6(int[] array) {
         for (int i = 1; i < array.length; i++) {
             if (array[i] == array[i-1]) {
@@ -79,8 +79,8 @@ public class RuntimeQuiz {
         }
     }
 
-    public static Asymptotic f7_notation;
-    public static Runtime f7_runtime ;
+    public static Asymptotic f7_notation = Asymptotic.BIG_THETA;;
+    public static Runtime f7_runtime = Runtime.LOGLINEAR;
     public static Asymptotic f7_omega_notation = Asymptotic.BIG_OMEGA;
     public static Runtime f7_omega_runtime;
     /* When f7 is first called, start will be 0 and end will be the length of the array - 1 */
