@@ -28,8 +28,8 @@ public class RuntimeQuiz {
         }
     }
 
-    public static Asymptotic f2_notation;
-    public static Runtime f2_runtime;
+    public static Asymptotic f2_notation = Asymptotic.;
+    public static Runtime f2_runtime = Runtime.;
     public int f2(int n) {
         if (n <= 1) return n;
         f1(new int[n]);
