@@ -112,8 +112,8 @@ public class RuntimeQuiz {
     public static Runtime get_runtime = Runtime.LINEAR;;
 
     /* remove(Object o) */
-    public static Asymptotic remove_object_notation = Asymptotic.BIG_OMEGA;
-    public static Runtime remove_object_runtime = Runtime.LINEAR;;
+    public static Asymptotic remove_object_notation = Asymptotic.BIG_THETA;
+    public static Runtime remove_object_runtime = Runtime.LINEAR;
 
     /* remove(DLNode n) */
     public static Asymptotic remove_node_notation = Asymptotic.BIG_THETA;
@@ -121,6 +121,6 @@ public class RuntimeQuiz {
 
     /* reverse() */
     public static Asymptotic reverse_notation = Asymptotic.BIG_THETA;
-    public static Runtime reverse_runtime = Runtime.LINEAR;;
+    public static Runtime reverse_runtime = Runtime.LINEAR;
 
 }
