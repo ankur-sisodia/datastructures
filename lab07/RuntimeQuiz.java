@@ -37,7 +37,7 @@ public class RuntimeQuiz {
     }
 
     public static Asymptotic f3_notation = Asymptotic.BIG_THETA;
-    public static Runtime f3_runtime = Runtime.LOG_N;
+    public static Runtime f3_runtime = Runtime.EXPONENTIAL;
     /* When f3 is first called, start will be 0 and end will be the length of the array - 1 */
     public int f3(char[] array, int start, int end) {
         if (array.length <= 1 || end <= start) return 1;
@@ -80,9 +80,9 @@ public class RuntimeQuiz {
     }
 
     public static Asymptotic f7_notation = Asymptotic.BIG_THETA;;
-    public static Runtime f7_runtime = Runtime.LOGLINEAR;
+    public static Runtime f7_runtime = Runtime.CUBIC;
     public static Asymptotic f7_omega_notation = Asymptotic.BIG_OMEGA;
-    public static Runtime f7_omega_runtime;
+    public static Runtime f7_omega_runtime = Runtime.CONSTANT;
     /* When f7 is first called, start will be 0 and end will be the length of the array - 1 */
     public int f7(int[] array, int start, int end) {
         if (array.length <= 1 || end <= start) {
