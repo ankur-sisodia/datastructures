@@ -102,26 +102,26 @@ public class RuntimeQuiz {
 
     /* insert(Object o, int position) */
     public static Asymptotic insert_notation = Asymptotic.BIG_THETA;
-    public static Runtime insert_runtime = Runtime.LINEAR;
+    public static Runtime insert_runtime = Runtime.CONSTANT;
 
     /* insertBack(Object o) */
     public static Asymptotic insert_back_notation = Asymptotic.BIG_THETA;
-    public static Runtime insert_back_runtime = Runtime.LINEAR;
+    public static Runtime insert_back_runtime = Runtime.CONSTANT;
 
     /* get(int position) */
-    public static Asymptotic get_notation = Asymptotic.BIG_THETA;
+    public static Asymptotic get_notation = Asymptotic.BIG_OMEGA;
     public static Runtime get_runtime = Runtime.LINEAR;;
 
     /* remove(Object o) */
-    public static Asymptotic remove_object_notation = Asymptotic.BIG_THETA;
-    public static Runtime remove_object_runtime = Runtime.LINEAR;;
+    public static Asymptotic remove_object_notation = Asymptotic.BIG_OMEGA;
+    public static Runtime remove_object_runtime = Runtime.CONSTANT;;
 
     /* remove(DLNode n) */
     public static Asymptotic remove_node_notation = Asymptotic.BIG_THETA;
-    public static Runtime remove_node_runtime = Runtime.LINEAR;;
+    public static Runtime remove_node_runtime = Runtime.CONSTANT;;
 
     /* reverse() */
-    public static Asymptotic reverse_notation = Asymptotic.BIG_THETA;
+    public static Asymptotic reverse_notation = Asymptotic.BIG_OMEGA;
     public static Runtime reverse_runtime = Runtime.LINEAR;;
 
 }
