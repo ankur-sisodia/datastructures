@@ -101,9 +101,8 @@ public class RuntimeQuiz {
     /** Below, fill out the runtimes for the specified methods of your DLList **/
 
     /* insert(Object o, int position) */
-    public static Asymptotic insert_notation = Asymptotic.BIG_THETA;
-    public static Runtime insert_runtime = Runtime.CONSTANT;
-
+    public static Asymptotic insert_notation = Asymptotic.BIG_OMEGA;
+    public static Runtime insert_runtime = Runtime.LINEAR;
     /* insertBack(Object o) */
     public static Asymptotic insert_back_notation = Asymptotic.BIG_THETA;
     public static Runtime insert_back_runtime = Runtime.CONSTANT;
