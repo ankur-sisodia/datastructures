@@ -80,7 +80,7 @@ public class RuntimeQuiz {
     }
 
     public static Asymptotic f7_notation = Asymptotic.BIG_O;
-    public static Runtime f7_runtime = Runtime.LOGLINEAR;
+    public static Runtime f7_runtime = Runtime.EXPONENTIAL;
     public static Asymptotic f7_omega_notation = Asymptotic.BIG_OMEGA;
     public static Runtime f7_omega_runtime = Runtime.CONSTANT;
     /* When f7 is first called, start will be 0 and end will be the length of the array - 1 */
