@@ -101,27 +101,27 @@ public class RuntimeQuiz {
     /** Below, fill out the runtimes for the specified methods of your DLList **/
 
     /* insert(Object o, int position) */
-    public static Asymptotic insert_notation;
-    public static Runtime insert_runtime;
+    public static Asymptotic insert_notation = Asymptotic.BIG_THETA;
+    public static Runtime insert_runtime = Runtime.LINEAR;
 
     /* insertBack(Object o) */
-    public static Asymptotic insert_back_notation;
-    public static Runtime insert_back_runtime;
+    public static Asymptotic insert_back_notation = Asymptotic.BIG_THETA;
+    public static Runtime insert_back_runtime = Runtime.LINEAR;
 
     /* get(int position) */
-    public static Asymptotic get_notation;
-    public static Runtime get_runtime;
+    public static Asymptotic get_notation = Asymptotic.BIG_THETA;
+    public static Runtime get_runtime = Runtime.LINEAR;;
 
     /* remove(Object o) */
-    public static Asymptotic remove_object_notation;
-    public static Runtime remove_object_runtime;
+    public static Asymptotic remove_object_notation = Asymptotic.BIG_THETA;
+    public static Runtime remove_object_runtime = Runtime.LINEAR;;
 
     /* remove(DLNode n) */
-    public static Asymptotic remove_node_notation;
-    public static Runtime remove_node_runtime;
+    public static Asymptotic remove_node_notation = Asymptotic.BIG_THETA;
+    public static Runtime remove_node_runtime = Runtime.LINEAR;;
 
     /* reverse() */
-    public static Asymptotic reverse_notation;
-    public static Runtime reverse_runtime;
+    public static Asymptotic reverse_notation = Asymptotic.BIG_THETA;
+    public static Runtime reverse_runtime = Runtime.LINEAR;;
 
 }
