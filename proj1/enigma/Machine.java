@@ -46,10 +46,12 @@ class Machine {
             if (myRotors[3].atNotch()){
                 myRotors[2].advance();
                 myRotors[3].advance();
-                myRotors[4].advance();}
+                myRotors[4].advance();
+            }
             else if (myRotors[4].atNotch()) {
                 myRotors[3].advance();
-                myRotors[4].advance();}
+                myRotors[4].advance();
+            }
             else {
                 myRotors[4].advance();
             }
