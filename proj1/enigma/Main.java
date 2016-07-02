@@ -176,13 +176,13 @@ public final class Main {
     private static void buildRotors() {
         String[][] spec = PermutationData.ROTOR_SPECS;
         r1 = new Rotor(spec[0][0], spec[0][1], spec[0][2], spec[0][3]);
-        r2 = new Rotor(spec[1][0], spec[1][1],spec[1][2], spec[1][3]);
-        r3 = new Rotor(spec[2][0], spec[2][1],spec[2][2], spec[2][3]);
-        r4 = new Rotor(spec[3][0], spec[3][1],spec[3][2], spec[3][3]);
-        r5 = new Rotor(spec[4][0], spec[4][1],spec[4][2], spec[4][3]);
-        r6 = new Rotor(spec[5][0], spec[5][1],spec[5][2], spec[5][3]);
-        r7 = new Rotor(spec[6][0], spec[6][1],spec[6][2], spec[6][3]);
-        r8 = new Rotor(spec[7][0], spec[7][1],spec[7][2], spec[7][3]);
+        r2 = new Rotor(spec[1][0], spec[1][1], spec[1][2], spec[1][3]);
+        r3 = new Rotor(spec[2][0], spec[2][1], spec[2][2], spec[2][3]);
+        r4 = new Rotor(spec[3][0], spec[3][1], spec[3][2], spec[3][3]);
+        r5 = new Rotor(spec[4][0], spec[4][1], spec[4][2], spec[4][3]);
+        r6 = new Rotor(spec[5][0], spec[5][1], spec[5][2], spec[5][3]);
+        r7 = new Rotor(spec[6][0], spec[6][1], spec[6][2], spec[6][3]);
+        r8 = new Rotor(spec[7][0], spec[7][1], spec[7][2], spec[7][3]);
         rBETA =  new FixedRotor(spec[8][0], spec[8][1], spec[8][2]);
         rGAMMA = new FixedRotor(spec[9][0], spec[9][1], spec[9][2]);
         rB = new Reflector(spec[10][0], spec[10][1]);
