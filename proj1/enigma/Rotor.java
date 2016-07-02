@@ -65,28 +65,34 @@ class Rotor {
     /** Return the conversion of P (an integer in the range 0..25)
      *  according to my permutation. */
     int convertForward(int p) {
-        return 0; // FIXME
+        int lookupNum = (((p + getSetting()) % ALPHABET_SIZE) + 26) % 26;
+        char convertedNum = this.myR2L.charAt(lookupNum);
+        return (((toIndex(convertedNum) - getSetting()) % ALPHABET_SIZE) + 26) % 26;
     }
 
     /** Return the conversion of E (an integer in the range 0..25)
      *  according to the inverse of my permutation. */
     int convertBackward(int e) {
-        return 0; // FIXME
+        int lookupNum = (((e + getSetting()) % ALPHABET_SIZE) + 26) % 26;
+        char convertedNum = this.myL2R.charAt(lookupNum);
+        return (((toIndex(convertedNum) - getSetting()) % ALPHABET_SIZE) + 26) % 26;
     }
 
     /** Returns true iff I am positioned to allow the rotor to my left
      *  to advance. */
     boolean atNotch() {
-        //char[] myNotchesSplit = myNotches.toCharArray();
-        //if (myNotchesSplit.contains()){
-        //    return true;
-        //}
+        char[] myNotchesSplit = myNotches.toCharArray();
+        for (char ch : myNotchesSplit) {
+            if (toIndex(ch) == getSetting()) {
+                return true;
+            }
+        }
         return false; // FIXME
     }
 
     /** Advance me one position. */
     void advance() {
-        _setting = _setting%ALPHABET_SIZE;         // FIXME
+        _setting = (_setting+1)%ALPHABET_SIZE;
     }
 
     /** My current setting (index 0..25, with 0 indicating that 'A'

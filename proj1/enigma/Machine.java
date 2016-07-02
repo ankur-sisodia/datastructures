@@ -35,6 +35,32 @@ class Machine {
     /** Returns the encoding/decoding of MSG, updating the state of
      *  the rotors accordingly. */
     String convert(String msg) {
+        char[] settingChar = msg.toCharArray();
+        int codeTracker;
+        String newMSG ="";
+        for (int i=0; i < settingChar.length; i++){
+            if (myRotors[3].atNotch()){
+                myRotors[2].advance();
+                myRotors[3].advance();
+                myRotors[4].advance();}
+            else if (myRotors[2].atNotch()){
+                myRotors[2].advance();
+                myRotors[4].advance();}
+            else {
+                myRotors[4].advance();
+            }
+            codeTracker = Rotor.toIndex(settingChar[i]);
+            codeTracker = myRotors[4].convertForward(codeTracker);
+            codeTracker = myRotors[3].convertForward(codeTracker);
+            codeTracker = myRotors[2].convertForward(codeTracker);
+            codeTracker = myRotors[1].convertForward(codeTracker);
+            codeTracker = myRotors[0].convertForward(codeTracker);
+            codeTracker = myRotors[1].convertBackward(codeTracker);
+            codeTracker = myRotors[2].convertBackward(codeTracker);
+            codeTracker = myRotors[3].convertBackward(codeTracker);
+            codeTracker = myRotors[4].convertBackward(codeTracker);
+            newMSG = newMSG + Rotor.toLetter(codeTracker);
+        }
         return msg; //NEED TO UPDATE!!
         // FIXME
     }

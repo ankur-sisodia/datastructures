@@ -43,9 +43,12 @@ public final class Main {
                     M = new Machine();
                     configure(M, line);
                 } else {
+                    if (M == null) {
+                        throw new EnigmaException();
+                    }
                     writeMessageLine(M.convert(standardize(line)),
                                      outputFilename);
-                    System.out.println(line); //Ankur to delete
+                    System.out.println(standardize(line)); //Ankur to delete
                 }
             }
         } catch (IOException excp) {
@@ -56,7 +59,7 @@ public final class Main {
 
     /** Return true iff LINE is an Enigma configuration line. */
     private static boolean isConfigurationLine(String line) {
-        //ANKUR UPDATED
+        //ANKUR UPDATE ALL THE CASES
         return line.startsWith("*");
     }
 
@@ -85,7 +88,7 @@ public final class Main {
             }
         M.replaceRotors(rotorsToConfig);
         System.out.println("Config: "+configSplit[6]);
-        M.setRotors(configSplit[5]);
+        M.setRotors(configSplit[6]);
 
         }
 
@@ -96,6 +99,7 @@ public final class Main {
      *  characters other than letters and blanks. */
     private static String standardize(String line) {
         line = line.toUpperCase().trim();
+        line = line.replace(" ", "");
         return line; // FIXME}
     }
 
