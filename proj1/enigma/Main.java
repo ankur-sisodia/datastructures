@@ -8,7 +8,7 @@ import java.io.*;
 public final class Main {
 
     // WARNING: Not all methods that have code in them are complete!
-    static Rotor r1, r2, r3, r4, r5,r6,r7,r8, rBETA, rGAMMA, rB, rC;
+    static Rotor r1, r2, r3, r4, r5, r6, r7, r8, rBETA, rGAMMA, rB, rC;
 
     /** Process a sequence of encryptions and decryptions, as
      *  specified in the input from the standard input.  Print the
@@ -81,9 +81,8 @@ public final class Main {
         if (line.split(" ").length != 7) return false;
         if (!line.startsWith("*")) return false;
         String [] split = line.split(" ");
-        for (int i=0; i<7; i++)
-        {
-            for (int j=i+1; j<7; j++){
+        for (int i = 0; i < 7; i++) {
+            for (int j = i+1; j < 7; j++){
                 if (split[i].equals(split[j]))
                     return false;
             }
