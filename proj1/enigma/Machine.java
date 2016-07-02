@@ -25,7 +25,7 @@ class Machine {
     void replaceRotors(Rotor[] rotors) {
 //        myRotors = rotors;
         myNumRotors = 5;
-        for (int i=0; i< 5; i++) {
+        for (int i = 0; i < 5; i++) {
             myRotors[i] = rotors[i];
         }; //Set to A
     }
@@ -35,7 +35,7 @@ class Machine {
      *  rotor setting.  */
     void setRotors(String setting) {
         char[] settingChar = setting.toCharArray();
-        for (int i=0; i< myNumRotors-1; i++) {
+        for (int i = 0; i < myNumRotors-1; i++) {
             myRotors[i+ 1].set(Rotor.toIndex(settingChar[i]));
         };
         // FIXME
@@ -46,13 +46,13 @@ class Machine {
     String convert(String msg) {
         char[] settingChar = msg.toCharArray();
         int codeTracker;
-        String newMSG ="";
-        for (int i=0; i < settingChar.length; i++){
+        String newMSG = "";
+        for (int i=0; i < settingChar.length; i++) {
             if (myRotors[3].atNotch()){
                 myRotors[2].advance();
                 myRotors[3].advance();
                 myRotors[4].advance();}
-            else if (myRotors[4].atNotch()){
+            else if (myRotors[4].atNotch()) {
                 myRotors[3].advance();
                 myRotors[4].advance();}
             else {
