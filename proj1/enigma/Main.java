@@ -59,7 +59,27 @@ public final class Main {
     /** Return true iff LINE is an Enigma configuration line. */
     private static boolean isConfigurationLine(String line) {
         //ANKUR UPDATE ALL THE CASES
-        return line.startsWith("*");
+        /*
+        The input might not start with a configuration.
+        The configuration line can contain the wrong number of arguments.
+        The rotors might be misnamed.
+        A rotor might be repeated in the configuration.
+        The first rotor might not be a reflector.
+        The initial positions string might be the wrong length or contain non-alphabetic characters.
+        The message might contain non-alphabetic characters.
+         */
+        if (line.equals("")) return false;
+        if (line.split(" ").length != 7) return false;
+        if (!line.startsWith("*")) return false;
+        String [] split = line.split(" ");
+        for (int i=0; i<7; i++)
+        {
+            for (int j=i+1; j<7; j++){
+                if (split[i].equals(split[j]))
+                    return false;
+            }
+        }
+        return  true;
     }
 
     /** Configure M according to the specification given on CONFIG,
@@ -83,14 +103,11 @@ public final class Main {
            if (configSplit[i + 1].equals(SPECS[10][0])) {rotorsToConfig[i] = rB;}
            if (configSplit[i + 1].equals(SPECS[11][0])) {rotorsToConfig[i] = rC;}
            /* switch case SPECS[11][0]: rotorsToConfig[i]= rC; break;*/
-           System.out.println("Rotor "+i+": "+rotorsToConfig[i].myRotorName);
             }
-       M.replaceRotors(rotorsToConfig);
-        System.out.println("Config: "+configSplit[6] + " ");
+        M.replaceRotors(rotorsToConfig);
         M.setRotors(configSplit[6]);
 
         }
-
 
 
     /** Return the result of converting LINE to all upper case,

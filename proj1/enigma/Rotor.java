@@ -80,7 +80,7 @@ class Rotor {
     /** Returns true iff I am positioned to allow the rotor to my left
      *  to advance. */
     boolean atNotch() {
-        if (myNotches.equals(String.valueOf(toLetter(getSetting())))) {
+    /*    if (myNotches.equals(String.valueOf(toLetter(getSetting())))) {
             return true;
         } else if (myNotches.length() == 2) {
             if (myNotches.substring(0,1).equals(String.valueOf(toLetter(getSetting())))) {
@@ -88,15 +88,15 @@ class Rotor {
             } if (myNotches.substring(1).equals(String.valueOf(toLetter(getSetting())))) {
                 return true;
             }
-        }
+        }*/
 
 
-        /*char[] myNotchesSplit = myNotches.toCharArray();
+        char[] myNotchesSplit = myNotches.toCharArray();
         for (char ch : myNotchesSplit) {
             if (toIndex(ch) == getSetting()) {
                 return true;
             }
-        }*/
+        }
         return false; // FIXME
     }
 
