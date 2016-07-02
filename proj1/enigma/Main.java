@@ -67,26 +67,25 @@ public final class Main {
         String[] configSplit = config.split(" ");
         Rotor[] rotorsToConfig = new Rotor[5];
         String[][] SPECS = PermutationData.ROTOR_SPECS;
-        System.out.println(SPECS[10][0]);
-        System.out.println(configSplit[1]);
        for (int i =0; i< rotorsToConfig.length; i++) {
-           if (configSplit[i + 1].equals(SPECS[0][0])) {rotorsToConfig[i] = r1; break;}
-           if (configSplit[i + 1].equals(SPECS[1][0])) {rotorsToConfig[i] = r2; break;}
-           if (configSplit[i + 1].equals(SPECS[2][0])) {rotorsToConfig[i] = r3; break;}
-           if (configSplit[i + 1].equals(SPECS[3][0])) {rotorsToConfig[i] = r4; break;}
-           if (configSplit[i + 1].equals(SPECS[4][0])) {rotorsToConfig[i] = r5; break;}
-           if (configSplit[i + 1].equals(SPECS[5][0])) {rotorsToConfig[i] = r6; break;}
-           if (configSplit[i + 1].equals(SPECS[6][0])) {rotorsToConfig[i] = r7; break;}
-           if (configSplit[i + 1].equals(SPECS[7][0])) {rotorsToConfig[i] = r8; break;}
-           if (configSplit[i + 1].equals(SPECS[8][0])) {rotorsToConfig[i] = rBETA; break;}
-           if (configSplit[i + 1].equals(SPECS[9][0])) {rotorsToConfig[i] = rGAMMA; break;}
-           if (configSplit[i + 1].equals(SPECS[10][0])) {rotorsToConfig[i] = rB; break;}
-           if (configSplit[i + 1].equals(SPECS[11][0])) {rotorsToConfig[i] = rC; break;}
+           if (configSplit[i + 1].equals(SPECS[0][0])) {rotorsToConfig[i] = r1;}
+           if (configSplit[i + 1].equals(SPECS[1][0])) {rotorsToConfig[i] = r2;}
+           if (configSplit[i + 1].equals(SPECS[2][0])) {rotorsToConfig[i] = r3;}
+           if (configSplit[i + 1].equals(SPECS[3][0])) {rotorsToConfig[i] = r4;}
+           if (configSplit[i + 1].equals(SPECS[4][0])) {rotorsToConfig[i] = r5;}
+           if (configSplit[i + 1].equals(SPECS[5][0])) {rotorsToConfig[i] = r6;}
+           if (configSplit[i + 1].equals(SPECS[6][0])) {rotorsToConfig[i] = r7;}
+           if (configSplit[i + 1].equals(SPECS[7][0])) {rotorsToConfig[i] = r8;}
+           if (configSplit[i + 1].equals(SPECS[8][0])) {rotorsToConfig[i] = rBETA;}
+           if (configSplit[i + 1].equals(SPECS[9][0])) {rotorsToConfig[i] = rGAMMA;}
+           if (configSplit[i + 1].equals(SPECS[10][0])) {rotorsToConfig[i] = rB;}
+           if (configSplit[i + 1].equals(SPECS[11][0])) {rotorsToConfig[i] = rC;}
            /* switch case SPECS[11][0]: rotorsToConfig[i]= rC; break;*/
+           System.out.println("Rotor "+i+": "+rotorsToConfig[i].myRotorName);
             }
-
-        //M.replaceRotors();
-        //M.setRotors(config[5]);
+        M.replaceRotors(rotorsToConfig);
+        System.out.println("Config: "+configSplit[6]);
+        M.setRotors(configSplit[5]);
 
         }
 

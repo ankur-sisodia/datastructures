@@ -7,19 +7,28 @@ package enigma;
 class Machine {
 
     // This needs other methods or constructors.
-    Rotor[] myRotors;
-    int myRotorSize;
-    /** Set my rotors to (from left to right) ROTORS.  Initially, the rotor
-     *  settings are all 'A'. */
+    static Rotor[] myRotors;
+    static int myNumRotors;
+
+    /**
+     * Set my rotors to (from left to right) ROTORS.  Initially, the rotor
+     * settings are all 'A'.
+     */
     void replaceRotors(Rotor[] rotors) {
-        myRotors = new Rotor[rotors.length];
-        // FIXME
+        myRotors = rotors;
+        myNumRotors = 5;
+        for (int i=0; i< 5; i++) {myRotors[i].set(0);}; //Set to A
     }
 
     /** Set my rotors according to SETTING, which must be a string of four
      *  upper-case letters. The first letter refers to the leftmost
      *  rotor setting.  */
     void setRotors(String setting) {
+        char[] settingChar = setting.toCharArray();
+        for (int i=0; i< myNumRotors-1; i++) {
+            myRotors[i].set(Rotor.toIndex(settingChar[i]));
+            System.out.println("Rotor "+myRotors[i].myRotorName+" set to:"+myRotors[i].getSetting());
+        };
         // FIXME
     }
 
