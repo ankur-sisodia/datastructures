@@ -2,12 +2,12 @@
 package enigma;
 
 /** Class that represents a reflector in the enigma.
- *  @author
+ *  @author asisodia
  */
 class Reflector extends Rotor {
 
     // This needs other methods or constructors.
-    public Reflector(String rotorName, String rightToLeft)
+    Reflector(String rotorName, String rightToLeft)
     {
         super(rotorName,rightToLeft,"","");
     }
