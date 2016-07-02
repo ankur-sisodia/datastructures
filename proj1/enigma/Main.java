@@ -97,21 +97,20 @@ public final class Main {
         // ANKUR UPDATING
         String[] configSplit = config.split(" ");
         Rotor[] rotorsToConfig = new Rotor[5];
-        String[][] Specs = PermutationData.ROTOR_SPECS;
-        String[][] joe = PermutationData.ROTOR_SPECS;
+        String[][] spec = PermutationData.ROTOR_SPECS;
         for (int i =0; i< rotorsToConfig.length; i++) {
-           if (configSplit[i + 1].equals(Specs[0][0])) {rotorsToConfig[i] = r1;}
-           if (configSplit[i + 1].equals(Specs[1][0])) {rotorsToConfig[i] = r2;}
-           if (configSplit[i + 1].equals(Specs[2][0])) {rotorsToConfig[i] = r3;}
-           if (configSplit[i + 1].equals(Specs[3][0])) {rotorsToConfig[i] = r4;}
-           if (configSplit[i + 1].equals(Specs[4][0])) {rotorsToConfig[i] = r5;}
-           if (configSplit[i + 1].equals(Specs[5][0])) {rotorsToConfig[i] = r6;}
-           if (configSplit[i + 1].equals(Specs[6][0])) {rotorsToConfig[i] = r7;}
-           if (configSplit[i + 1].equals(Specs[7][0])) {rotorsToConfig[i] = r8;}
-           if (configSplit[i + 1].equals(Specs[8][0])) {rotorsToConfig[i] = rBETA;}
-           if (configSplit[i + 1].equals(Specs[9][0])) {rotorsToConfig[i] = rGAMMA;}
-           if (configSplit[i + 1].equals(Specs[10][0])) {rotorsToConfig[i] = rB;}
-           if (configSplit[i + 1].equals(Specs[11][0])) {rotorsToConfig[i] = rC;}
+           if (configSplit[i + 1].equals(spec[0][0])) {rotorsToConfig[i] = r1;}
+           if (configSplit[i + 1].equals(spec[1][0])) {rotorsToConfig[i] = r2;}
+           if (configSplit[i + 1].equals(spec[2][0])) {rotorsToConfig[i] = r3;}
+           if (configSplit[i + 1].equals(spec[3][0])) {rotorsToConfig[i] = r4;}
+           if (configSplit[i + 1].equals(spec[4][0])) {rotorsToConfig[i] = r5;}
+           if (configSplit[i + 1].equals(spec[5][0])) {rotorsToConfig[i] = r6;}
+           if (configSplit[i + 1].equals(spec[6][0])) {rotorsToConfig[i] = r7;}
+           if (configSplit[i + 1].equals(spec[7][0])) {rotorsToConfig[i] = r8;}
+           if (configSplit[i + 1].equals(spec[8][0])) {rotorsToConfig[i] = rBETA;}
+           if (configSplit[i + 1].equals(spec[9][0])) {rotorsToConfig[i] = rGAMMA;}
+           if (configSplit[i + 1].equals(spec[10][0])) {rotorsToConfig[i] = rB;}
+           if (configSplit[i + 1].equals(spec[11][0])) {rotorsToConfig[i] = rC;}
            /* switch case SPECS[11][0]: rotorsToConfig[i]= rC; break;*/
             }
         M.replaceRotors(rotorsToConfig);
@@ -151,19 +150,19 @@ public final class Main {
 
     /** Create all the necessary rotors. */
     private static void buildRotors() {
-        String[][] Specs = PermutationData.ROTOR_SPECS;
-        r1 = new Rotor(Specs[0][0], Specs[0][1], Specs[0][2], Specs[0][3]);
-        r2 = new Rotor(Specs[1][0], Specs[1][1],Specs[1][2], Specs[1][3]);
-        r3 = new Rotor(Specs[2][0], Specs[2][1],Specs[2][2], Specs[2][3]);
-        r4 = new Rotor(Specs[3][0], Specs[3][1],Specs[3][2], Specs[3][3]);
-        r5 = new Rotor(Specs[4][0], Specs[4][1],Specs[4][2], Specs[4][3]);
-        r6 = new Rotor(Specs[5][0], Specs[5][1],Specs[5][2], Specs[5][3]);
-        r7 = new Rotor(Specs[6][0], Specs[6][1],Specs[6][2], Specs[6][3]);
-        r8 = new Rotor(Specs[7][0], Specs[7][1],Specs[7][2], Specs[7][3]);
-        rBETA =  new FixedRotor(Specs[8][0], Specs[8][1], Specs[8][2]);
-        rGAMMA = new FixedRotor(Specs[9][0], Specs[9][1], Specs[9][2]);
-        rB = new Reflector(Specs[10][0], Specs[10][1]);
-        rC = new Reflector(Specs[11][0], Specs[11][1]);
+        String[][] spec = PermutationData.ROTOR_SPECS;
+        r1 = new Rotor(spec[0][0], spec[0][1], spec[0][2], spec[0][3]);
+        r2 = new Rotor(spec[1][0], spec[1][1],spec[1][2], spec[1][3]);
+        r3 = new Rotor(spec[2][0], spec[2][1],spec[2][2], spec[2][3]);
+        r4 = new Rotor(spec[3][0], spec[3][1],spec[3][2], spec[3][3]);
+        r5 = new Rotor(spec[4][0], spec[4][1],spec[4][2], spec[4][3]);
+        r6 = new Rotor(spec[5][0], spec[5][1],spec[5][2], spec[5][3]);
+        r7 = new Rotor(spec[6][0], spec[6][1],spec[6][2], spec[6][3]);
+        r8 = new Rotor(spec[7][0], spec[7][1],spec[7][2], spec[7][3]);
+        rBETA =  new FixedRotor(spec[8][0], spec[8][1], spec[8][2]);
+        rGAMMA = new FixedRotor(spec[9][0], spec[9][1], spec[9][2]);
+        rB = new Reflector(spec[10][0], spec[10][1]);
+        rC = new Reflector(spec[11][0], spec[11][1]);
     }
 
 }
