@@ -146,9 +146,9 @@ public final class Main {
      *  removing all blanks and tabs.  It is an error if LINE contains
      *  characters other than letters and blanks. */
     private static String standardize(String line) {
-        for (int i = 0; i < line.length(); i++) {
+        for (int i = 1; i < line.length(); i++) {
             char ch = line.charAt(i);
-            if (!Character.isLetter(ch) || !(ch == ' ')) {
+            if (!Character.isLetter(ch) && !(ch == ' ')) {
                 throw new EnigmaException();
             }
         }
