@@ -92,7 +92,7 @@ class Rotor {
 
     /** Advance me one position. */
     void advance() {
-        _setting = (_setting+1)%ALPHABET_SIZE;
+        _setting = (_setting + 1) % ALPHABET_SIZE;
     }
 
     /** My current setting (index 0..25, with 0 indicating that 'A'
