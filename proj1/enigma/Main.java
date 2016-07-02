@@ -98,7 +98,8 @@ public final class Main {
         String[] configSplit = config.split(" ");
         Rotor[] rotorsToConfig = new Rotor[5];
         String[][] Specs = PermutationData.ROTOR_SPECS;
-       for (int i =0; i< rotorsToConfig.length; i++) {
+        String[][] joe = PermutationData.ROTOR_SPECS;
+        for (int i =0; i< rotorsToConfig.length; i++) {
            if (configSplit[i + 1].equals(Specs[0][0])) {rotorsToConfig[i] = r1;}
            if (configSplit[i + 1].equals(Specs[1][0])) {rotorsToConfig[i] = r2;}
            if (configSplit[i + 1].equals(Specs[2][0])) {rotorsToConfig[i] = r3;}
