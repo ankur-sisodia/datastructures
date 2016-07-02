@@ -72,9 +72,9 @@ public final class Main {
         if (line.split(" ").length != 7) return false;
         if (!line.startsWith("*")) return false;
         String [] split = line.split(" ");
-        for (int i=0; i<8; i++)
+        for (int i=0; i<7; i++)
         {
-            for (int j=i+1; j<8; j++){
+            for (int j=i+1; j<7; j++){
                 if (split[i].equals(split[j]))
                     return false;
             }
