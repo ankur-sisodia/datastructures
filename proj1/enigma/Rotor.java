@@ -12,29 +12,27 @@ class Rotor {
     static final int ALPHABET_SIZE = 26;
 
 
-    public Rotor(String rotorName, String rightToLeft, String leftToRight, String notches)
-    {
+    Rotor(String rotorName, String rightToLeft, String leftToRight, String notches) {
         myRotorName = rotorName;
         myR2L = rightToLeft;
         myL2R = leftToRight;
         myNotches = notches;
         //System.out.println("setting:" + _setting);
         //System.out.println("mynotches: "+ myNotches);
-
     }
 
 
     /** Assuming that P is an integer in the range 0..25, returns the
      *  corresponding upper-case letter in the range A..Z. */
     static char toLetter(int p) {
-        return (char)('A'+p);
+        return (char)('A' + p);
         //return 'A';  // FIXME
     }
 
     /** Assuming that C is an upper-case letter in the range A-Z, return the
      *  corresponding index in the range 0..25. Inverse of toLetter. */
     static int toIndex(char c) {
-        return (int)(c-'A');
+        return (int)(c - 'A');
         // FIXME
     }
 
