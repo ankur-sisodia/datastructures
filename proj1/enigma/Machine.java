@@ -43,7 +43,7 @@ class Machine {
         int codeTracker;
         String newMSG = "";
         for (int i = 0; i < settingChar.length; i++) {
-            if (myRotors[3].atNotch()){
+            if (myRotors[3].atNotch()) {
                 myRotors[2].advance();
                 myRotors[3].advance();
                 myRotors[4].advance();
