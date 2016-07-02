@@ -100,41 +100,40 @@ public final class Main {
         String[][] spec = PermutationData.ROTOR_SPECS;
         for (int i = 0; i < rotorsToConfig.length; i++) {
             if (configSplit[i + 1].equals(spec[0][0])) {
-               rotorsToConfig[i] = r1;
+                rotorsToConfig[i] = r1;
            }
-            if (configSplit[i + 1].equals(spec[1][0]))
-           {
-               rotorsToConfig[i] = r2;
+            if (configSplit[i + 1].equals(spec[1][0])) {
+                rotorsToConfig[i] = r2;
            }
             if (configSplit[i + 1].equals(spec[2][0])) {
-               rotorsToConfig[i] = r3;
+                rotorsToConfig[i] = r3;
            }
             if (configSplit[i + 1].equals(spec[3][0])) {
-               rotorsToConfig[i] = r4;
+                rotorsToConfig[i] = r4;
            }
             if (configSplit[i + 1].equals(spec[4][0])) {
-               rotorsToConfig[i] = r5;
+                rotorsToConfig[i] = r5;
            }
             if (configSplit[i + 1].equals(spec[5][0])) {
-               rotorsToConfig[i] = r6;
+                rotorsToConfig[i] = r6;
            }
             if (configSplit[i + 1].equals(spec[6][0])) {
-               rotorsToConfig[i] = r7;
+                rotorsToConfig[i] = r7;
            }
             if (configSplit[i + 1].equals(spec[7][0])) {
-               rotorsToConfig[i] = r8;
+                rotorsToConfig[i] = r8;
            }
             if (configSplit[i + 1].equals(spec[8][0])) {
-               rotorsToConfig[i] = rBETA;
+                rotorsToConfig[i] = rBETA;
            }
             if (configSplit[i + 1].equals(spec[9][0])) {
-               rotorsToConfig[i] = rGAMMA;
+                rotorsToConfig[i] = rGAMMA;
            }
             if (configSplit[i + 1].equals(spec[10][0])) {
-               rotorsToConfig[i] = rB;
+                rotorsToConfig[i] = rB;
            }
             if (configSplit[i + 1].equals(spec[11][0])) {
-               rotorsToConfig[i] = rC;
+                rotorsToConfig[i] = rC;
            }
            /* switch case SPECS[11][0]: rotorsToConfig[i]= rC; break;*/
         }
