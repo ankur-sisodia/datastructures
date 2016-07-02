@@ -18,9 +18,9 @@ class Reflector extends Rotor {
 
     @Override
     int convertForward(int p) {
-        int lookupNum = (p + getSetting()) % ALPHABET_SIZE;
+        int lookupNum = (p + getSetting());
         char convertedNum = this.myR2L.charAt(lookupNum);
-        return (toIndex(convertedNum) - getSetting()) % ALPHABET_SIZE;
+        return (toIndex(convertedNum) - getSetting());
     }
 
     /** Returns a useless value; should never be called. */

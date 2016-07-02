@@ -18,7 +18,6 @@ class Rotor {
         myR2L = rightToLeft;
         myL2R = leftToRight;
         myNotches = notches;
-        _setting = toIndex('A');
         //System.out.println("setting:" + _setting);
         //System.out.println("mynotches: "+ myNotches);
 
@@ -81,12 +80,23 @@ class Rotor {
     /** Returns true iff I am positioned to allow the rotor to my left
      *  to advance. */
     boolean atNotch() {
-        char[] myNotchesSplit = myNotches.toCharArray();
+        if (myNotches.equals(String.valueOf(toLetter(getSetting())))) {
+            return true;
+        } else if (myNotches.length() == 2) {
+            if (myNotches.substring(0,1).equals(String.valueOf(toLetter(getSetting())))) {
+                return true;
+            } if (myNotches.substring(1).equals(String.valueOf(toLetter(getSetting())))) {
+                return true;
+            }
+        }
+
+
+        /*char[] myNotchesSplit = myNotches.toCharArray();
         for (char ch : myNotchesSplit) {
             if (toIndex(ch) == getSetting()) {
                 return true;
             }
-        }
+        }*/
         return false; // FIXME
     }
 

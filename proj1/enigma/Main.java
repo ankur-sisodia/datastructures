@@ -48,7 +48,6 @@ public final class Main {
                     }
                     writeMessageLine(M.convert(standardize(line)),
                                      outputFilename);
-                    System.out.println(standardize(line)); //Ankur to delete
                 }
             }
         } catch (IOException excp) {
@@ -86,8 +85,8 @@ public final class Main {
            /* switch case SPECS[11][0]: rotorsToConfig[i]= rC; break;*/
            System.out.println("Rotor "+i+": "+rotorsToConfig[i].myRotorName);
             }
-        M.replaceRotors(rotorsToConfig);
-        System.out.println("Config: "+configSplit[6]);
+       M.replaceRotors(rotorsToConfig);
+        System.out.println("Config: "+configSplit[6] + " ");
         M.setRotors(configSplit[6]);
 
         }

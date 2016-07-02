@@ -14,10 +14,20 @@ class Machine {
      * Set my rotors to (from left to right) ROTORS.  Initially, the rotor
      * settings are all 'A'.
      */
-    void replaceRotors(Rotor[] rotors) {
-        myRotors = rotors;
+    public Machine()
+    {
+        myRotors = new Rotor[5];
         myNumRotors = 5;
-        for (int i=0; i< 5; i++) {myRotors[i].set(0);}; //Set to A
+    }
+
+
+
+    void replaceRotors(Rotor[] rotors) {
+//        myRotors = rotors;
+        myNumRotors = 5;
+        for (int i=0; i< 5; i++) {
+            myRotors[i] = rotors[i];
+        }; //Set to A
     }
 
     /** Set my rotors according to SETTING, which must be a string of four
@@ -26,8 +36,7 @@ class Machine {
     void setRotors(String setting) {
         char[] settingChar = setting.toCharArray();
         for (int i=0; i< myNumRotors-1; i++) {
-            myRotors[i].set(Rotor.toIndex(settingChar[i]));
-            System.out.println("Rotor "+myRotors[i].myRotorName+" set to:"+myRotors[i].getSetting());
+            myRotors[i+ 1].set(Rotor.toIndex(settingChar[i]));
         };
         // FIXME
     }
@@ -43,8 +52,8 @@ class Machine {
                 myRotors[2].advance();
                 myRotors[3].advance();
                 myRotors[4].advance();}
-            else if (myRotors[2].atNotch()){
-                myRotors[2].advance();
+            else if (myRotors[4].atNotch()){
+                myRotors[3].advance();
                 myRotors[4].advance();}
             else {
                 myRotors[4].advance();
@@ -61,7 +70,7 @@ class Machine {
             codeTracker = myRotors[4].convertBackward(codeTracker);
             newMSG = newMSG + Rotor.toLetter(codeTracker);
         }
-        return msg; //NEED TO UPDATE!!
+        return newMSG; //NEED TO UPDATE!!
         // FIXME
     }
 }
