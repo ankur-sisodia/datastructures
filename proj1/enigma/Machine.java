@@ -47,12 +47,10 @@ class Machine {
                 myRotors[2].advance();
                 myRotors[3].advance();
                 myRotors[4].advance();
-            }
-            else if (myRotors[4].atNotch()) {
+            } else if (myRotors[4].atNotch()) {
                 myRotors[3].advance();
                 myRotors[4].advance();
-            }
-            else {
+            } else {
                 myRotors[4].advance();
             }
             codeTracker = Rotor.toIndex(settingChar[i]);
