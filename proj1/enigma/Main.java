@@ -68,6 +68,15 @@ public final class Main {
         The initial positions string might be the wrong length or contain non-alphabetic characters.
         The message might contain non-alphabetic characters.
          */
+            /*    if (myNotches.equals(String.valueOf(toLetter(getSetting())))) {
+            return true;
+        } else if (myNotches.length() == 2) {
+            if (myNotches.substring(0,1).equals(String.valueOf(toLetter(getSetting())))) {
+                return true;
+            } if (myNotches.substring(1).equals(String.valueOf(toLetter(getSetting())))) {
+                return true;
+            }
+        }*/
         if (line.equals("")) return false;
         if (line.split(" ").length != 7) return false;
         if (!line.startsWith("*")) return false;

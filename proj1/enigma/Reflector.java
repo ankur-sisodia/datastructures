@@ -9,7 +9,7 @@ class Reflector extends Rotor {
     // This needs other methods or constructors.
     Reflector(String rotorName, String rightToLeft)
     {
-        super(rotorName,rightToLeft,"","");
+        super(rotorName, rightToLeft, "", "");
     }
     @Override
     boolean hasInverse() {
