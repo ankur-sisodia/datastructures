@@ -2,15 +2,17 @@
 package enigma;
 
 /** Class that represents a complete enigma machine.
- *  @author
+ *  @asisodia
  */
 class Machine {
 
     // This needs other methods or constructors.
-
+    Rotor[] myRotors;
+    int myRotorSize;
     /** Set my rotors to (from left to right) ROTORS.  Initially, the rotor
      *  settings are all 'A'. */
     void replaceRotors(Rotor[] rotors) {
+        myRotors = new Rotor[rotors.length];
         // FIXME
     }
 
@@ -24,7 +26,7 @@ class Machine {
     /** Returns the encoding/decoding of MSG, updating the state of
      *  the rotors accordingly. */
     String convert(String msg) {
-        return null;
+        return msg; //NEED TO UPDATE!!
         // FIXME
     }
 }

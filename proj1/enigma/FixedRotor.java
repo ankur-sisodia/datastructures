@@ -7,6 +7,11 @@ class FixedRotor extends Rotor {
 
     // This needs other methods or constructors.
 
+
+    public FixedRotor(String rotorName, String rightToLeft, String leftToRight)
+    {
+        super(rotorName,rightToLeft,leftToRight,"");
+    }
     @Override
     boolean advances() {
         return false;

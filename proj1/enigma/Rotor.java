@@ -2,24 +2,41 @@
 package enigma;
 
 /** Class that represents a rotor in the enigma machine.
- *  @author
+ *  @asisodia
  */
 class Rotor {
     // This needs other methods, fields, and constructors.
+    protected String myRotorName, myR2L, myL2R, myNotches;
 
     /** Size of alphabet used for plaintext and ciphertext. */
     static final int ALPHABET_SIZE = 26;
 
+
+    public Rotor(String rotorName, String rightToLeft, String leftToRight, String notches)
+    {
+        myRotorName = rotorName;
+        myR2L = rightToLeft;
+        myL2R = leftToRight;
+        myNotches = notches;
+        _setting = toIndex('A');
+        //System.out.println("setting:" + _setting);
+        //System.out.println("mynotches: "+ myNotches);
+
+    }
+
+
     /** Assuming that P is an integer in the range 0..25, returns the
      *  corresponding upper-case letter in the range A..Z. */
     static char toLetter(int p) {
-        return 'A';  // FIXME
+        return (char)('A'+p);
+        //return 'A';  // FIXME
     }
 
     /** Assuming that C is an upper-case letter in the range A-Z, return the
      *  corresponding index in the range 0..25. Inverse of toLetter. */
     static int toIndex(char c) {
-        return 0;  // FIXME
+        return (int)(c-'A');
+        // FIXME
     }
 
     /** Returns true iff this rotor has a ratchet and can advance. */
@@ -29,6 +46,7 @@ class Rotor {
 
     /** Returns true iff this rotor has a left-to-right inverse. */
     boolean hasInverse() {
+        if (myR2L.equals("")) {return false;}
         return true;
     }
 
@@ -59,12 +77,16 @@ class Rotor {
     /** Returns true iff I am positioned to allow the rotor to my left
      *  to advance. */
     boolean atNotch() {
+        //char[] myNotchesSplit = myNotches.toCharArray();
+        //if (myNotchesSplit.contains()){
+        //    return true;
+        //}
         return false; // FIXME
     }
 
     /** Advance me one position. */
     void advance() {
-        // FIXME
+        _setting = _setting%ALPHABET_SIZE;         // FIXME
     }
 
     /** My current setting (index 0..25, with 0 indicating that 'A'
