@@ -73,9 +73,9 @@ public class Measurement {
 	 */
 	public Measurement multiple(int multipleAmount) {
 		int totalInches = multipleAmount * (12 * myFeet + myInches);
-		myFeet = (int)totalInches/12;
-		myInches = totalInches % 12;
-		return new Measurement(myFeet, myInches); // provided to allow the file to compile
+		/*myFeet = (int)totalInches/12;
+		myInches = totalInches % 12;*/
+		return new Measurement((int)totalInches/12, totalInches%12); // provided to allow the file to compile
 	}
 
 	/**
