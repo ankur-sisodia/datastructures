@@ -73,9 +73,9 @@ public class Measurement {
 	 */
 	public Measurement multiple(int multipleAmount) {
 		int totalInches = 3 * (12 * myFeet + myInches);
-		int newFeet = (int)totalInches/12;
-		int newInches = totalInches % 12;
-		return new Measurement(newFeet, newInches); // provided to allow the file to compile
+		myFeet = (int)totalInches/12;
+		myInches = totalInches % 12;
+		return new Measurement(myFeet, myInches); // provided to allow the file to compile
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class Measurement {
 	 */
 	@Override
 	public String toString() {
-		String output = myFeet + "'" + myInches + "";//find character
+		String output = myFeet + "'" + myInches + "\"";//find character
 		return output; // provided to allow the file to compile
 	}
 
