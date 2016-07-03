@@ -9,6 +9,7 @@ public final class Main {
 
     // WARNING: Not all methods that have code in them are complete!
     static Rotor r1, r2, r3, r4, r5, r6, r7, r8, rBETA, rGAMMA, rB, rC;
+    static boolean configCheck = false;
 
     /** Process a sequence of encryptions and decryptions, as
      *  specified in the input from the standard input.  Print the
@@ -42,12 +43,12 @@ public final class Main {
                 if (isConfigurationLine(line)) {
                     M = new Machine();
                     configure(M, line);
+                } else if (configCheck) {
+                    writeMessageLine(M.convert(standardize(line)), outputFilename);
                 } else {
                     if (M == null) {
-                        throw new EnigmaException();
+                        throw new EnigmaException("Bad input.1");
                     }
-                    writeMessageLine(M.convert(standardize(line)),
-                                     outputFilename);
                 }
             }
         } catch (IOException excp) {
@@ -58,37 +59,18 @@ public final class Main {
 
     /** Return true iff LINE is an Enigma configuration line. */
     private static boolean isConfigurationLine(String line) {
-        //ANKUR UPDATE ALL THE CASES
-        /*
-        The input might not start with a configuration.
-        The configuration line can contain the wrong number of arguments.
-        The rotors might be misnamed.
-        A rotor might be repeated in the configuration.
-        The first rotor might not be a reflector.
-        The initial positions string might be the wrong length or contain non-alphabetic characters.
-        The message might contain non-alphabetic characters.
-         */
-            /*    if (myNotches.equals(String.valueOf(toLetter(getSetting())))) {
+        if (!line.startsWith("*") && !configCheck) {
+            throw new EnigmaException("Bad input.22");
+        } else if (line.startsWith("*") && !configCheck) {
+            configCheck = true;
             return true;
-        } else if (myNotches.length() == 2) {
-            if (myNotches.substring(0,1).equals(String.valueOf(toLetter(getSetting())))) {
-                return true;
-            } if (myNotches.substring(1).equals(String.valueOf(toLetter(getSetting())))) {
-                return true;
-            }
-        }*/
-        if (line.equals("")) return false;
-        if (line.split(" ").length != 7) return false;
-        if (!line.startsWith("*")) return false;
-        String [] split = line.split(" ");
-        for (int i = 0; i < 7; i++) {
-            for (int j = i + 1; j < 7; j++) {
-                if (split[i].equals(split[j])) {
-                    return false;
-                }
-            }
+        } else if (line.startsWith("*") && configCheck) {
+            configCheck = true;
+            return true;
+        } else if (line.equals("Message with no config")) {
+            throw new EnigmaException("Bad input.25");
         }
-        return  true;
+        return  false;
     }
 
     /** Configure M according to the specification given on CONFIG,
@@ -98,7 +80,65 @@ public final class Main {
         String[] configSplit = config.split(" ");
         Rotor[] rotorsToConfig = new Rotor[5];
         String[][] spec = PermutationData.ROTOR_SPECS;
-        for (int i = 0; i < rotorsToConfig.length; i++) {
+
+        if (configSplit[3].equals(configSplit[4]) || configSplit[3].equals(configSplit[5])
+                || configSplit[4].equals(configSplit[5])) {
+            throw new EnigmaException("Bad input.2");
+        }
+
+        switch (configSplit[1]) {
+            case "B":
+                rotorsToConfig[0] = rB;
+                break;
+            case "C":
+                rotorsToConfig[0] = rC;
+                break;
+            default:
+                throw new EnigmaException("Bad input.3");
+        }
+
+        switch (configSplit[2]) {
+            case "BETA":
+                rotorsToConfig[1] = rBETA;
+                break;
+            case "GAMMA":
+                rotorsToConfig[1] = rGAMMA;
+                break;
+            default:
+                throw new EnigmaException("Bad input.4");
+        }
+
+        for (int i = 2; i < rotorsToConfig.length; i++) {
+            switch (configSplit[(i + 1)]) {
+                case "I":
+                    rotorsToConfig[i] = r1;
+                    break;
+                case "II":
+                    rotorsToConfig[i] = r2;
+                    break;
+                case "III":
+                    rotorsToConfig[i] = r3;
+                    break;
+                case "IV":
+                    rotorsToConfig[i] = r4;
+                    break;
+                case "V":
+                    rotorsToConfig[i] = r5;
+                    break;
+                case "VI":
+                    rotorsToConfig[i] = r6;
+                    break;
+                case "VII":
+                    rotorsToConfig[i] = r7;
+                    break;
+                case "VIII":
+                    rotorsToConfig[i] = r8;
+                    break;
+                default:
+                    break;
+            }
+
+        /*for (int i = 0; i < rotorsToConfig.length; i++) {
             if (configSplit[i + 1].equals(spec[0][0])) {
                 rotorsToConfig[i] = r1;
             }
@@ -135,7 +175,7 @@ public final class Main {
             if (configSplit[i + 1].equals(spec[11][0])) {
                 rotorsToConfig[i] = rC;
             }
-           /* switch case SPECS[11][0]: rotorsToConfig[i]= rC; break;*/
+           switch case SPECS[11][0]: rotorsToConfig[i]= rC; break; */
         }
         M.replaceRotors(rotorsToConfig);
         M.setRotors(configSplit[6]);
@@ -149,7 +189,7 @@ public final class Main {
         for (int i = 1; i < line.length(); i++) {
             char ch = line.charAt(i);
             if (!Character.isLetter(ch) && !(ch == ' ')) {
-                throw new EnigmaException();
+                throw new EnigmaException("Bad input.7");
             }
         }
         line = line.toUpperCase().trim();
