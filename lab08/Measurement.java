@@ -72,7 +72,7 @@ public class Measurement {
 	 * (3) should return an object that represents 1 foot, 9 inches.
 	 */
 	public Measurement multiple(int multipleAmount) {
-		int totalInches = 3 * (12 * myFeet + myInches);
+		int totalInches = multipleAmount * (12 * myFeet + myInches);
 		myFeet = (int)totalInches/12;
 		myInches = totalInches % 12;
 		return new Measurement(myFeet, myInches); // provided to allow the file to compile
