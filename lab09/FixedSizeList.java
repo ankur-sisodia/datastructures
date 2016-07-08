@@ -37,6 +37,7 @@ public class FixedSizeList implements SimpleList {
     // Assume that the sequence isn't full.
     public void add(int k) {
         // YOUR CODE HERE
+        if (count == (values.length - 1)) return;
         values[count-1] = k;
         count++;
     }
