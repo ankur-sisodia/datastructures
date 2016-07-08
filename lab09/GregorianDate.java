@@ -18,9 +18,9 @@ public class GregorianDate extends Date {
 
     @Override
     public GregorianDate nextDate() {
-        int tempMonth = month();
-        int tempDay = dayOfMonth();
-        int tempYear = year();
+        int tempMonth = super.month();
+        int tempDay = super.dayOfMonth();
+        int tempYear = super.year();
         if (tempMonth == 12 && tempDay == 31){
             return new GregorianDate(tempYear + 1, 1, 1);
         } else if (monthLengths[tempMonth] == tempDay) {
