@@ -18,13 +18,13 @@ public class GregorianDate extends Date {
 
     @Override
     public GregorianDate nextDate() {
-        int tempMonth = super.month();
+        int tempMonth = month();
         int tempDay = super.dayOfMonth();
         int tempYear = super.year();
-        if (tempMonth == 12 && tempDay == 31){
+        if (month() == 12 && tempDay == 31){
             return new GregorianDate(tempYear + 1, 1, 1);
-        } else if (monthLengths[tempMonth] == tempDay) {
-            return new GregorianDate(tempYear, tempMonth + 1, 1);
+        } else if (monthLengths[tempMonth-1] == tempDay) {
+            return new GregorianDate(tempYear, month() + 1, 1);
         } else {
             return new GregorianDate(tempYear, tempMonth, tempDay);
         }
