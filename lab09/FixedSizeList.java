@@ -7,6 +7,10 @@ public class FixedSizeList implements SimpleList {
     // constructor
     // capacity: actual size of the array or the (temporary) maximum
     // number of elements it can hold
+    public FixedSizeList() {
+        // YOUR CODE HERE
+    }
+
     public FixedSizeList(int capacity) {
         // YOUR CODE HERE
         values = new int[capacity];
