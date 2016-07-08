@@ -83,11 +83,11 @@ public class FixedSizeList implements SimpleList {
         if ((i < 0) || (i > count) || (count >= values.length)) {
             throw new ListException("List Exception2");
         }
-        if (i==0 && count == 0) {
-            values[0] = k;
+        if (i == count) {
+            values[i] = k;
             count++;
         } else {
-            for (int j = i + 1; j <= count; j++) {
+            for (int j = count; j > i; j= j-1) {
                 values[j] = values[j - 1];
             }
             values[i] = k;
