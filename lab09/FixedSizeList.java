@@ -37,8 +37,8 @@ public class FixedSizeList implements SimpleList {
     // Assume that the sequence isn't full.
     public void add(int k) {
         // YOUR CODE HERE
+        values[count-1] = k;
         count++;
-        values[count] = k;
     }
 
     // This method removes k from the list, if it is present.
