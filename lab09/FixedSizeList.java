@@ -8,7 +8,6 @@ public class FixedSizeList implements SimpleList {
     // capacity: actual size of the array or the (temporary) maximum
     // number of elements it can hold
     public FixedSizeList() {
-        // YOUR CODE HERE
     }
 
     public FixedSizeList(int capacity) {
@@ -50,9 +49,10 @@ public class FixedSizeList implements SimpleList {
         // YOUR CODE HERE
         for (int i = 0; i < count; i++) {
             if (values[i] == k) {
-                for (int j = i; j < count; j++) {
+                for (int j = i; j < count-1; j++) {
                     values[j] = values[j+1];
                 }
+                values[count-1] = 0;
                 count--;
                 return;
             }
@@ -95,10 +95,12 @@ public class FixedSizeList implements SimpleList {
     // note now this is different from the one-argument remove 
     public void removeIndex(int i) {
         // YOUR CODE HERE
-        for (int j = i; i < count; i++) {
+        for (int j = i; i < count-1; i++) {
             values[j] = values[j+1];
         }
+        values[count-1] = 0;
         count--;
+
     }
 
 
