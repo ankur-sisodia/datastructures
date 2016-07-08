@@ -37,7 +37,7 @@ public class FixedSizeList implements SimpleList {
     public void add(int k) {
         // YOUR CODE HERE
         if (count >= values.length){
-            throw new ListException("List Exception");
+            throw new ListException("List Exception1");
         }
         values[count] = k;
         count++;
@@ -81,13 +81,18 @@ public class FixedSizeList implements SimpleList {
     // Also, i is between 0 and count, inclusive.
     public void add(int i, int k) {
         if ((i < 0) || (i > count) || (count >= values.length)) {
-            throw new ListException("List Exception");
+            throw new ListException("List Exception2");
         }
-        for (int j = i + 1; j <= count; j++) {
-            values[j] = values[j-1];
+        if (i==0 && count == 0) {
+            values[0] = k;
+            count++;
+        } else {
+            for (int j = i + 1; j <= count; j++) {
+                values[j] = values[j - 1];
+            }
+            values[i] = k;
+            count++;
         }
-        values[i] = k;
-        count++;
     }
 
 
