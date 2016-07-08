@@ -41,6 +41,8 @@ public class FixedSizeListTest {
         f.add(0,1);
         f.add(0,2);
         f.add(0,3);
+        f.removeIndex(0);
+        f.remove(2);
 
     }
 

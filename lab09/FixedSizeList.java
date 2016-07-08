@@ -100,7 +100,7 @@ public class FixedSizeList implements SimpleList {
     // note now this is different from the one-argument remove 
     public void removeIndex(int i) {
         // YOUR CODE HERE
-        for (int j = i; i < count-1; i++) {
+        for (int j = i; j < count-1; j++) {
             values[j] = values[j+1];
         }
         values[count-1] = 0;
