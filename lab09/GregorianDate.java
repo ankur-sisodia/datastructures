@@ -18,15 +18,12 @@ public class GregorianDate extends Date {
 
     @Override
     public GregorianDate nextDate() {
-        int tempMonth = month();
-        int tempDay = dayOfMonth();
-        int tempYear = year();
-        if (month() == 12 && tempDay == 31){
-            return new GregorianDate(tempYear + 1, 1, 1);
-        } else if (monthLengths[tempMonth-1] == tempDay) {
-            return new GregorianDate(tempYear, tempMonth + 1, 1);
+        if (dayOfMonth() == monthLengths[month() - 1] && month() !=  12) {
+            return new GregorianDate(year(), month() + 1, 1);
+        } else if (dayOfMonth() == monthLengths[month() - 1] && month() ==  12) {
+            return new GregorianDate(year() + 1, 1, 1);
         } else {
-            return new GregorianDate(tempYear, tempMonth, tempDay);
+            return new GregorianDate(year(), month(), dayOfMonth() + 1);
         }
     }
 

@@ -13,16 +13,13 @@ public class FrenchRevolutionaryDate extends Date {
 
     @Override
     public FrenchRevolutionaryDate nextDate() {
-        int tempMonth = month();
-        int tempDay = dayOfMonth();
-        int tempYear = year();
 
-        if (tempMonth == 13 && tempDay == 5) {
-            return new FrenchRevolutionaryDate(tempYear + 1, 1, 1);
-        } else if (tempDay == 30) {
-            return new FrenchRevolutionaryDate(tempYear, tempMonth + 1, 1);
+        if (month() == 13 && dayOfMonth() == 5) {
+            return new FrenchRevolutionaryDate(year() + 1, 1, 1);
+        } else if (dayOfMonth() == 30) {
+            return new FrenchRevolutionaryDate(year(), month() + 1, 1);
         } else {
-            return new FrenchRevolutionaryDate(tempYear, tempMonth, tempDay + 1);
+            return new FrenchRevolutionaryDate(year(), month(), dayOfMonth() + 1);
         }
 
     }
