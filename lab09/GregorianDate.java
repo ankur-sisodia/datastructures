@@ -16,4 +16,21 @@ public class GregorianDate extends Date {
         return rtnValue + dayOfMonth();
     }
 
+    @Override
+    public GregorianDate nextDate() {
+        int tempMonth = month();
+        int tempDay = dayOfMonth();
+        int tempYear = year();
+
+        if (tempMonth == 12 && tempDay == 31){
+            return new GregorianDate(tempYear + 1, 1, 1);
+        } else if (monthLengths[tempMonth+1] == tempDay) {
+            return new GregorianDate(tempYear, tempMonth +1, 1);
+        } else {
+            return new GregorianDate(tempYear, tempMonth, tempDay);
+        }
+
+
+    }
+
 }

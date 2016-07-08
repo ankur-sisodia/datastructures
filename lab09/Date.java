@@ -1,6 +1,8 @@
 public abstract class Date {
 
     public abstract int dayOfYear();
+    public abstract Date nextDate();
+
     private int dayOfMonth;
     private int month;
     private int year;
