@@ -37,7 +37,9 @@ public class FixedSizeList implements SimpleList {
     // Assume that the sequence isn't full.
     public void add(int k) {
         // YOUR CODE HERE
-        if (count == (values.length - 1)) return;
+        if (count == values.length ){
+            throw new ListException("List Exception");
+        }
         values[count-1] = k;
         count++;
     }
@@ -78,6 +80,9 @@ public class FixedSizeList implements SimpleList {
     // Assumptions: The array isn't full, i.e. count < values.length
     // Also, i is between 0 and count, inclusive.
     public void add(int i, int k) {
+        if ((i < 0) || (i > count) || (count >= values.length)) {
+            throw new ListException("List Exception");
+        }
         for (int j = i + 1; j <= count; j++) {
             values[j] = values[j-1];
         }
