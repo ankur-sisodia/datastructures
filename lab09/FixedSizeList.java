@@ -40,7 +40,7 @@ public class FixedSizeList implements SimpleList {
         if (count >= values.length){
             throw new ListException("List Exception");
         }
-        values[count-1] = k;
+        values[count] = k;
         count++;
     }
 
