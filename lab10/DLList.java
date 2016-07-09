@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class DLList<T> implements Iterable {
+public class DLList<T> implements Iterable<T> {
     DLNode sentinel;
     int size;
 
@@ -34,27 +34,27 @@ public class DLList<T> implements Iterable {
         }
     }
 
-    public class DLLIterator<T> implements Iterator {
-        DLNode curr, next;
+    public class DLLIterator implements Iterator {
+        DLNode curr;
         int index;
 
 
         public DLLIterator() {
-            this.curr = sentinel;
-            this.next = sentinel.next;
+            curr = sentinel;
             index = 0;
         }
 
         @Override
         public boolean hasNext() {
-            if (next != null) return true;
+            if (index < size) return true;
             return false;
         }
 
         @Override
-        public Object next() {
+        public T next() {
             index++;
-            return next;
+            curr = curr.next;
+            return curr.item;
         }
     }
 
@@ -209,5 +209,6 @@ public class DLList<T> implements Iterable {
         System.out.println("l = " + l);
         l.reverse();
         System.out.println("l = " + l);
+        for(Object o : l) System.out.println(o);
     }
 }
