@@ -69,7 +69,8 @@ public class DBTable<T> {
      * All keys present in this DB as obtained by the getter and in the whitelist are allowed.
      */
     public <R> Map<R, List<T>> groupByWhitelist(Function<T, R> getter, Collection<R> whitelist) {
-        return null; // FIX ME
+        return entries.stream().filter((t1) -> whitelist.contains(getter.apply(t1))).collect(Collectors.groupingBy(getter));
+        //getter.apply(t1).compareTo(getter.apply(t2))).collect(Collectors.toList());
     }
 
     /**
@@ -78,7 +79,13 @@ public class DBTable<T> {
      * DBTable<String> names = table.getSubtableOf(User::getUsername);
      */
     public <R> DBTable<R> getSubtableOf(Function<T, R> getter) {
-        return null; // FIX ME
+        return new DBTable<R>(getEntries()
+                .stream()
+                .map((T x) -> getter.apply(x))
+                .collect(Collectors.toList()));
+
+        // return entries.stream().filter((t1) -> whitelist.contains(getter.apply(t1))).collect(Collectors.toList());
+        //getter.apply(t1).compareTo(getter.apply(t2))).collect(Collectors.toList());
     }
 
     /**
