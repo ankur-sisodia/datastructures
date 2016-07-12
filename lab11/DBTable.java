@@ -55,7 +55,8 @@ public class DBTable<T> {
      * @return A List of the contents of this table, ordered by the result of the getter.
      */
     public <R extends Comparable<R>> List<T> getOrderedBy(Function<T, R> getter) {
-        return null; // FIX ME
+        return entries.stream().sorted((T t1, T t2)-> getter.apply(t1).compareTo(getter.apply(t2))).collect(Collectors.toList());
+                 // FIX ME
     }
 
     /**
