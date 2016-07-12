@@ -67,6 +67,8 @@ public class User implements Comparable<User> {
 
     @Override
     public boolean equals(Object o) {
+        if (o == null)
+            return false;
         if (!(o instanceof User))
             return false;
         if (this.age == ((User) o).getAge())
@@ -81,7 +83,7 @@ public class User implements Comparable<User> {
 
     @Override
     public int compareTo(User o) {
-        if (o==null)
+        if (o == null)
             return Integer.MAX_VALUE;
         if (this.id > ((User) o).getId()) {
             return Integer.MAX_VALUE;
