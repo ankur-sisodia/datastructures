@@ -81,6 +81,8 @@ public class User implements Comparable<User> {
 
     @Override
     public int compareTo(User o) {
+        if (o==null)
+            return Integer.MAX_VALUE;
         if (this.id > ((User) o).getId()) {
             return Integer.MAX_VALUE;
         }
