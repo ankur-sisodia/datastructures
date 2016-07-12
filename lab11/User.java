@@ -67,18 +67,35 @@ public class User implements Comparable<User> {
 
     @Override
     public boolean equals(Object o) {
-        return false; // FIX ME
+        if (!(o instanceof User))
+            return false;
+        if (this.age == ((User) o).getAge())
+                    if (this.username.equals(((User) o).getUsername()))
+                        return true;
+        return false;
+
+        //if (this.id == ((User) o).getId())
+        //  if (this.email.equals(((User) o).getEmail()))
+
     }
 
     @Override
     public int compareTo(User o) {
-        return Integer.MIN_VALUE; // FIX ME
+        if (this.id > ((User) o).getId()) {
+            return Integer.MAX_VALUE;
+        }
+        else if (this.id < ((User) o).getId()) {
+            return Integer.MIN_VALUE;
+        } else {
+            return this.username.compareTo(o.getUsername());
+        }
+         // FIX ME
     }
 
     public static void main(String[] args) {
         User[] users = {new User(2, "daniel", ""), new User(4, "matt", ""),
                 new User(1, "sarahjkim", ""), new User(1, "alanyao", "")};
-//        Arrays.sort(users);
+       Arrays.sort(users);
         System.out.println(Arrays.toString(users));
     }
 }
