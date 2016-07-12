@@ -16,7 +16,12 @@ public class UserExercises extends DBTable<User> {
      * then on their id if the age is the same.
      */
     public List<User> getOrderedByAgeThenId() {
-        return null; // FIX ME
+        return getEntries().stream()
+                .sorted((t1,t2)->
+                        (t1.getAge() == t2.getAge()) ?
+                                Integer.compare(t1.getId(),t2.getId()) :
+                                Integer.compare(t1.getAge(),t2.getAge()))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -24,7 +29,13 @@ public class UserExercises extends DBTable<User> {
      * If there are no users, the average is 0.
      */
     public double getAverageAge() {
-        return -1; // FIX ME
+        if (getEntries().size() == 0) {
+            return 0;
+        }
+        double sum = getEntries().stream().mapToDouble(s -> s.getAge()).sum();
+        double divisor = (double) getEntries().size();
+        return sum / divisor;
+        // FIX ME
     }
 
     /**
@@ -33,6 +44,9 @@ public class UserExercises extends DBTable<User> {
      * Returns a Map from each age present to a list of the usernames that have that age.
      */
     public Map<Integer, List<String>> groupUsernamesByAgeOlderThan(int min_age) {
-        return null; // FIX ME
+        return getEntries().stream()
+                .filter(t1 -> t1.getAge() > min_age)
+                .collect(Collectors.groupingBy(t1 -> t1.getAge(),
+                        Collectors.mapping(t1 -> t1.getUsername(), Collectors.toList())));
     }
 }

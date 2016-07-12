@@ -69,7 +69,10 @@ public class DBTable<T> {
      * All keys present in this DB as obtained by the getter and in the whitelist are allowed.
      */
     public <R> Map<R, List<T>> groupByWhitelist(Function<T, R> getter, Collection<R> whitelist) {
-        return entries.stream().filter((t1) -> whitelist.contains(getter.apply(t1))).collect(Collectors.groupingBy(getter));
+        return entries
+                .stream()
+                .filter((t1) -> whitelist.contains(getter.apply(t1)))
+                .collect(Collectors.groupingBy(getter));
         //getter.apply(t1).compareTo(getter.apply(t2))).collect(Collectors.toList());
     }
 
@@ -101,7 +104,11 @@ public class DBTable<T> {
      * should print out the daniel object twice, matt 3 times, and the remaining two once.
      */
     public <R extends Number> List<T> duplicateOn(Function<T, R> getter) {
-        return null; // FIX ME
+
+        // got help from classmate on the Stream.generate function
+        return getEntries().stream()
+                .flatMap(t1 -> Stream.generate(() -> t1).limit(getter.apply(t1).longValue()))
+                .collect(Collectors.toList());
     }
 
     public static void main(String[] args) {
