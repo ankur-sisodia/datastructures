@@ -72,12 +72,12 @@ public class User implements Comparable<User> {
         if (!(o instanceof User))
             return false;
         if (this.age == ((User) o).getAge())
+            if (this.id == ((User) o).getId())
+                if (this.email.equals(((User) o).getEmail()))
                     if (this.username.equals(((User) o).getUsername()))
                         return true;
         return false;
 
-        //if (this.id == ((User) o).getId())
-        //  if (this.email.equals(((User) o).getEmail()))
 
     }
 
