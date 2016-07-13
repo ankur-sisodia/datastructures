@@ -1,3 +1,4 @@
+
 /**
  * A BinaryTree is a tree with nodes that have up to two children.
  */
@@ -59,7 +60,25 @@ public class BinaryTree {
      */
     public void fillSampleTree2() {
         root = new TreeNode("a", new TreeNode("b", new TreeNode("d",
-            new TreeNode("e"), new TreeNode("f")), null), new TreeNode("c"));
+                new TreeNode("e"), new TreeNode("f")), null), new TreeNode("c"));
+    }
+
+    public void fillSampleTree3() {
+        root = new TreeNode("a", new TreeNode("b"), new TreeNode("c", new TreeNode("d", new TreeNode("e"), new TreeNode("f")), null));
+    }
+
+    public int height() {
+        if (root != null) {
+            return root.height();
+        }
+        return 0;
+    }
+
+    public boolean isCompletelyBalanced() {
+        if (root != null) {
+            return root.isCompletelyBalanced();
+        }
+        return true;
     }
 
     /**
@@ -73,6 +92,9 @@ public class BinaryTree {
         print(t, "sample tree 1");
         t.fillSampleTree2();
         print(t, "sample tree 2");
+        t.fillSampleTree3();
+        print(t, "sample tree 3");
+        System.out.println(t.height());
     }
 
     /**
@@ -150,6 +172,33 @@ public class BinaryTree {
             if (right != null) {
                 right.printInorder();
             }
+        }
+
+        public int height() {
+            int leftHeight = 0;
+            int rightHeight = 0;
+            if (left != null) {
+                leftHeight = left.height();
+            }
+            if (right != null){
+                rightHeight = right.height();
+            }
+            if (leftHeight > rightHeight) {
+                return leftHeight + 1;
+            }
+            else {
+                return rightHeight + 1;
+            }
+        }
+
+        public boolean isCompletelyBalanced() {
+            // TODO Auto-generated method stub
+            int minH = 0;
+            int maxH = 0;
+            maxH = Math.max(left.height(), right.height());
+            minH = Math.min(left.height(), right.height());
+            if (maxH - minH <= 1) {return true;}
+            return false;
         }
     }
 }
