@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /** A Generic Binary Tree Class.
-  * @author CS61BL Staff. */
+ * @author CS61BL Staff. */
 
 public class BinaryTree<T> {
 
@@ -30,13 +30,11 @@ public class BinaryTree<T> {
             this.item = item;
             left = right = null;
         }
-
         public TreeNode(T item, TreeNode left, TreeNode right) {
             this.item = item;
             this.left = left;
             this.right = right;
         }
-        
         /* Use for testing. */
         private void printPreorder() {
             System.out.print(item + " ");
@@ -47,7 +45,6 @@ public class BinaryTree<T> {
                 right.printPreorder();
             }
         }
-
         /* Use for testing. */
         private void printInorder() {
             if (left != null) {
@@ -61,42 +58,41 @@ public class BinaryTree<T> {
     }
 
     /* EVERYTHING BELOW IS USED ONLY FOR EXERCISE 5. */
+    /** Suggested testing script:
 
-        /** Suggested testing script:
+     @Test
+     public void treeFormatTest() {
+     BinarySearchTree<String> x = new BinarySearchTree();
+     x.add("C");
+     x.add("A");
+     x.add("E");
+     x.add("B");
+     x.add("D");
+     final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+     PrintStream oldOut = System.out;
+     System.setOut(new PrintStream(outContent));
+     BinaryTree.print(x, "x");
+     System.setOut(oldOut);
+     assertEquals(outContent.toString().trim(),
+     "x in preorder\nC A B E D \nx in inorder\nA B C D E \n\n".trim());
+     }
 
-                @Test
-                public void treeFormatTest() {
-                    BinarySearchTree<String> x = new BinarySearchTree();
-                    x.add("C");
-                    x.add("A");
-                    x.add("E");
-                    x.add("B");
-                    x.add("D");
-                    final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-                    PrintStream oldOut = System.out;
-                    System.setOut(new PrintStream(outContent));
-                    BinaryTree.print(x, "x");
-                    System.setOut(oldOut);
-                    assertEquals(outContent.toString().trim(), 
-                            "x in preorder\nC A B E D \nx in inorder\nA B C D E \n\n".trim());
-                }
-
-        */
+     */
 
     /* Constructs a binary tree based on the preorder PRE and inorder IN. */
     public BinaryTree(ArrayList<T> pre,  ArrayList<T> in) {
         root = listHelper(pre, in);
     }
-    
+
     /* A helper method. */
-    private TreeNode listHelper(ArrayList<T> pre,  ArrayList<T> in) { 
+    private TreeNode listHelper(ArrayList<T> pre,  ArrayList<T> in) {
         //YOUR CODE HERE
         return null;
     }
-    
+
     /** Print the values in the tree in preorder: root value first,
-      * then values in the left subtree (in preorder), then values
-      * in the right subtree (in preorder). */
+     * then values in the left subtree (in preorder), then values
+     * in the right subtree (in preorder). */
     public void printPreorder() {
         if (root == null) {
             System.out.println("(empty tree)");
@@ -107,8 +103,8 @@ public class BinaryTree<T> {
     }
 
     /** Print the values in the tree in inorder: values in the left
-      * subtree first (in inorder), then the root value, then values
-      * in the right subtree (in inorder). */
+     * subtree first (in inorder), then the root value, then values
+     * in the right subtree (in inorder). */
     public void printInorder() {
         if (root == null) {
             System.out.println("(empty tree)");
