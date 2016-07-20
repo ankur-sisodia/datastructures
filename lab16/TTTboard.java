@@ -48,7 +48,23 @@ public class TTTboard {
     
     public int hashCode() {
         // YOUR CODE HERE
-        return 0;
+        // 2x3^0 + 0x3^1 + 0x3^2 + 0x3^2 + 0x3^3 + 2x3^4 + 1x3^5  + 2x3^6 + 1x3^7 + 1x3^8
+        int hashValue = 0;
+        int temp;
+        for(int i =  myBoard.length -1 ; i >= 0; i--)
+        {
+            if (myBoard[i].equals('O')) {
+                temp = 2;
+            } else if (myBoard[i].equals('X')) {
+            temp = 1;
+            } else {
+                temp = 0;
+            }
+
+            hashValue = hashValue + temp*(3^(myBoard.length-i+1));
+        }
+        return hashValue;
+        //return myBoard.toString().hashCode();
     }
     
     private static final char BLANK = ' ';
