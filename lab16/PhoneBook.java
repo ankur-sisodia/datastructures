@@ -2,6 +2,11 @@ import java.util.*;
 
 public class PhoneBook {
     // TODO Add any instance variables necessary
+    HashMap<Person, PhoneNumber> hashMap;
+
+    public PhoneBook(){
+        hashMap= new HashMap<Person, PhoneNumber>();
+    }
 
     /*
      * Adds a person with this name to the phone book and associates 
@@ -9,6 +14,7 @@ public class PhoneBook {
      */
     public void addEntry(Person personToAdd, PhoneNumber numberToAdd){
     	// TODO Add your own code
+        hashMap.put(personToAdd, numberToAdd);
     }
 
     /*
@@ -16,7 +22,7 @@ public class PhoneBook {
      */
     public PhoneNumber getNumber(Person personToLookup){
     	// TODO Add your own code
-    	return null;
+    	return hashMap.get(personToLookup);
     }
 
 }
