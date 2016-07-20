@@ -22,5 +22,22 @@ public class JugContents {
     }
     
     // YOUR CODE HERE
+    // equals method && hashCode method
 
+    public boolean equals(JugContents jug) {
+        if ((jugs[0] == jug.jugs[0]) && (jugs[1] == jug.jugs[1]) && (jugs[2] == jug.jugs[2])) {
+            return true;
+        }
+        return false;
+    }
+    @Override
+    public int hashCode()
+    {
+        int hashValue = 0;
+        for(int i =  0; i < jugs.length; i++)
+        {
+            hashValue = hashValue + jugs[i]*(10^(jugs.length-i));
+        }
+        return hashValue;
+    }
 }

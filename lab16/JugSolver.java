@@ -20,7 +20,9 @@ public class JugSolver {
 			return true;
 		}
 		// Your code at this line, and possibly below
-		for (int i = 0; i < 3; i++) {
+        return true;
+
+		/*for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				if (i != j && tryPouring (pour(jugsObject, i, j))) {
 					System.out.println ("Pouring from jug " + i + " to jug " + j);
@@ -28,7 +30,7 @@ public class JugSolver {
 				}
 			}
 		}
-		return false;
+		return false;*/
 	}
 	
 	// Return the result of pouring as much as possible from jug from to jug to.
