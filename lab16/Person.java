@@ -17,5 +17,10 @@ public class Person {
 	}
 	
 	// TODO add additional methods
-	
+	@Override
+    public int hashCode()
+    {
+        return myName.hashCode();
+    }
+
 }
