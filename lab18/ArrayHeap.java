@@ -1,25 +1,25 @@
 import java.util.ArrayList;
 
- A Generic heap class. Unlike Java's priority queue, this heap doesn't just
-   store Comparable objects. Instead, it can store any type of object
-   (represented by type T) and an associated priority value.
-   @author CS 61BL Staff 
-public class ArrayHeapT {
+/** A Generic heap class. Unlike Java's priority queue, this heap doesn't just
+ * store Comparable objects. Instead, it can store any type of object
+ * (represented by type T) and an associated priority value.
+ * @author CS 61BL Staff */
+public class ArrayHeap<T> {
 
-	 DO NOT CHANGE THESE METHODS. 
+	/* DO NOT CHANGE THESE METHODS. */
 
-	 An ArrayList that stores the nodes in this binary heap. 
-	private ArrayListNode contents;
+	/* An ArrayList that stores the nodes in this binary heap. */
+	private ArrayList<Node> contents;
 
-	 A constructor that initializes an empty ArrayHeap. 
+	/* A constructor that initializes an empty ArrayHeap. */
 	public ArrayHeap() {
-		contents = new ArrayList();
+		contents = new ArrayList<>();
 		contents.add(null);
 	}
 
-	 Returns the node at index INDEX. 
+	/* Returns the node at index INDEX. */
 	private Node getNode(int index) {
-		if (index = contents.size()) {
+		if (index >= contents.size()) {
 			return null;
 		} else {
 			return contents.get(index);
@@ -27,15 +27,15 @@ public class ArrayHeapT {
 	}
 
 	private void setNode(int index, Node n) {
-		 In the case that the ArrayList is not big enough
-		 add null elements until it is the right size
-		while (index + 1 = contents.size()) {
+		// In the case that the ArrayList is not big enough
+		// add null elements until it is the right size
+		while (index + 1 >= contents.size()) {
 			contents.add(null);
 		}
 		contents.set(index, n);
 	}
 
-	 Swap the nodes at the two indices. 
+	/* Swap the nodes at the two indices. */
 	private void swap(int index1, int index2) {
 		Node node1 = getNode(index1);
 		Node node2 = getNode(index2);
@@ -43,34 +43,34 @@ public class ArrayHeapT {
 		this.contents.set(index2, node1);
 	}
 
-	 Prints out the heap sideways. Use for debugging. 
+	/* Prints out the heap sideways. Use for debugging. */
 	@Override
 	public String toString() {
-		return toStringHelper(1, );
+		return toStringHelper(1, "");
 	}
 
-	 Recursive helper method for toString. 
+	/* Recursive helper method for toString. */
 	private String toStringHelper(int index, String soFar) {
 		if (getNode(index) == null) {
-			return ;
+			return "";
 		} else {
-			String toReturn = ;
+			String toReturn = "";
 			int rightChild = getRightOf(index);
-			toReturn += toStringHelper(rightChild,          + soFar);
+			toReturn += toStringHelper(rightChild, "        " + soFar);
 			if (getNode(rightChild) != null) {
-				toReturn += soFar +     ;
+				toReturn += soFar + "    /";
 			}
-			toReturn += n + soFar + getNode(index) + n;
+			toReturn += "\n" + soFar + getNode(index) + "\n";
 			int leftChild = getLeftOf(index);
 			if (getNode(leftChild) != null) {
-				toReturn += soFar +     ;
+				toReturn += soFar + "    \\";
 			}
-			toReturn += toStringHelper(leftChild,          + soFar);
+			toReturn += toStringHelper(leftChild, "        " + soFar);
 			return toReturn;
 		}
 	}
 
-	 A Node class that stores items and their associated priorities. 
+	/* A Node class that stores items and their associated priorities. */
 	public class Node {
 		private T item;
 		private double priority;
@@ -90,77 +90,95 @@ public class ArrayHeapT {
 
 		@Override
 		public String toString() {
-			return this.item.toString() + ,  + this.priority;
+			return this.item.toString() + ", " + this.priority;
 		}
 	}
 
 
 
-	 FILL IN THE METHODS BELOW. 
+	/* FILL IN THE METHODS BELOW. */
 
-	 Returns the index of the node to the left of the node at i. 
+	/* Returns the index of the node to the left of the node at i. */
 	private int getLeftOf(int i) {
-		YOUR CODE HERE
+		//YOUR CODE HERE
+		return 2*i;
+
 	}
 
-	 Returns the index of the node to the right of the node at i. 
+	/* Returns the index of the node to the right of the node at i. */
 	private int getRightOf(int i) {
-		YOUR CODE HERE
+		//YOUR CODE HERE
+		return 2*i+1;
 	}
 
-	 Returns the index of the node that is the parent of the node at i. 
+	/* Returns the index of the node that is the parent of the node at i. */
 	private int getParentOf(int i) {
-		YOUR CODE HERE
+		//YOUR CODE HERE
+		return (int)(i/2);
 	}
 
-	 Adds the given node as a left child of the node at the given index. 
+	/* Adds the given node as a left child of the node at the given index. */
 	private void setLeft(int index, Node n) {
-		YOUR CODE HERE
+		//YOUR CODE HERE
+		setNode(2*index, n);
 	}
 
-	 Adds the given node as the right child of the node at the given index. 
+	/* Adds the given node as the right child of the node at the given index. */
 	private void setRight(int index, Node n) {
-		YOUR CODE HERE
+		//YOUR CODE HERE
+		setNode(2*index+1, n);
 	}
 
-	 Returns the index of the node with smaller priority. Precondition not
-	   both nodes are null. 
+	/** Returns the index of the node with smaller priority. Precondition: not
+	 * both nodes are null. */
 	private int min(int index1, int index2) {
-		YOUR CODE HERE
+		//YOUR CODE HERE
+		if(getNode(index1).priority() <= getNode(index2).priority())
+			return index1;
+		return index2;
 	}
 
-	 Returns the Node with the smallest priority value, but does not remove it
-	  from the heap. 
+	/* Returns the Node with the smallest priority value, but does not remove it
+	 * from the heap. */
 	public Node peek() {
-		YOUR CODE HERE
+		//YOUR CODE HERE
+		return getNode(1);
 	}
 
-	 Bubbles up the node currently at the given index. 
+	/* Bubbles up the node currently at the given index. */
 	private void bubbleUp(int index) {
-		YOUR CODE HERE
+		//YOUR CODE HERE
+		swap(index, getParentOf(index));
 	}
 
-	 Bubbles down the node currently at the given index. 
+	/* Bubbles down the node currently at the given index. */
 	private void bubbleDown(int index) {
-		YOUR CODE HERE
+		//YOUR CODE HERE
+		int minChild = min(getLeftOf(index), getRightOf(index));
+		swap(index, minChild);
 	}
 
-	 Inserts an item with the given priority value. Same as enqueue, or offer. 
+	/* Inserts an item with the given priority value. Same as enqueue, or offer. */
 	public void insert(T item, double priority) {
-		YOUR CODE HERE
+		//YOUR CODE HERE
+		Node newNode = new Node(item, priority);
+		setNode(contents.size()+1,newNode);
+		bubbleUp(contents.size());
 	}
 
-	 Returns the Node with the smallest priority value, and removes it from
-	  the heap. Same as dequeue, or poll. 
+	/* Returns the Node with the smallest priority value, and removes it from
+	 * the heap. Same as dequeue, or poll. */
 	public Node removeMin() {
-		YOUR CODE HERE
+		//YOUR CODE HERE
+		return getNode(1);
 	}
 
-	 Changes the node in this heap with the given item to have the given
-	  priority. You can assume the heap will not have two nodes with the same
-	  item. Check for item equality with .equals(), not == 
+	/* Changes the node in this heap with the given item to have the given
+	 * priority. You can assume the heap will not have two nodes with the same
+	 * item. Check for item equality with .equals(), not == */
 	public void changePriority(T item, double priority) {
-		YOUR CODE HERE
+		//YOUR CODE HERE
+		return;
 	}
 
 }
