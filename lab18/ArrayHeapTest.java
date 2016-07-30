@@ -10,6 +10,8 @@ public class ArrayHeapTest {
     public void peek() throws Exception {
         ArrayHeap<Integer> test = new ArrayHeap<Integer>();
         test.insert(5,2.0);
+        test.insert(4,1.0);
+
         System.out.println("peek: " + test.peek().toString());
     }
 
