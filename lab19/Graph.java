@@ -62,13 +62,14 @@ public class Graph implements Iterable<Integer>{
     // return false otherwise.
     public boolean isAdjacent(int from, int to) {
         //your code here
-        if(adjLists != null) {
+        return pathExists(from,to);
+        /*if(adjLists != null) {
             for(Edge check : adjLists[from]) {
                 if (check.to == to)
                     return true;
             }
         }
-        return false;
+        return false;*/
     }
 
     // Returns a list of all the neighboring  vertices 'u'
