@@ -99,42 +99,52 @@ public class ArrayHeap<T> {
 	/* FILL IN THE METHODS BELOW. */
 
     /* Returns the index of the node to the left of the node at i. */
-    private int getLeftOf(int i) {
+    private int getLeftOf(int i)
+    {
         return (i*2);
     }
 
     /* Returns the index of the node to the right of the node at i. */
-    private int getRightOf(int i) {
+    private int getRightOf(int i)
+    {
         return ((i*2) + 1);
     }
 
     /* Returns the index of the node that is the parent of the node at i. */
-    private int getParentOf(int i) {
-        if (i < 2) {
-            return i;
-        }
-        if (i < 0) {
+    private int getParentOf(int i)
+    {
+        if (i < 0)
+        {
             return 0;
         }
-
+        if (i < 2)
+        {
+            return i;
+        }
         return (i/2);
     }
 
     /* Adds the given node as a left child of the node at the given index. */
-    private void setLeft(int index, Node n) {
+    private void setLeft(int index, Node n)
+    {
         setNode(getLeftOf(index), n);
     }
 
     /* Adds the given node as the right child of the node at the given index. */
-    private void setRight(int index, Node n) {
+    private void setRight(int index, Node n)
+    {
         setNode(getRightOf(index), n);
+
     }
 
     /** Returns the index of the node with smaller priority. Precondition: not
      * both nodes are null. */
-    private int min(int index1, int index2) {
-        if (getNode(index1) != null && getNode(index2) != null) {
-            if (contents.get(index1).priority() <= contents.get(index2).priority()) {
+    private int min(int index1, int index2)
+    {
+        if (getNode(index1) != null && getNode(index2) != null)
+        {
+            if (contents.get(index1).priority() <= contents.get(index2).priority())
+            {
                 return index1;
             }
             return index2;
@@ -146,8 +156,10 @@ public class ArrayHeap<T> {
 
     /* Returns the Node with the smallest priority value, but does not remove it
      * from the heap. */
-    public Node peek() {
-        if (contents != null && getNode(1) != null) {
+    public Node peek()
+    {
+        if (contents != null && getNode(1) != null)
+        {
             return getNode(1);
         }
         return null;
@@ -155,20 +167,22 @@ public class ArrayHeap<T> {
 
     /* Bubbles up the node currently at the given index. */
     private void bubbleUp(int index) {
-        int parent = getParentOf(index);
-        while (index > 0 && getNode(parent).priority() > getNode(index).priority()) {
-            swap(parent, index);
-            index = parent;
-            parent = getParentOf(index);
+
+        int par = getParentOf(index);
+        while (index > 0 && getNode(par).priority() > getNode(index).priority())
+        {
+            swap(par, index);
+            index = par;
+            par = getParentOf(index);
         }
     }
 
     /* Bubbles down the node currently at the given index. */
     private void bubbleDown(int index) {
         int curr = index;
-        int leftChild = getLeftOf(index);
-        int rightChild = getRightOf(index);
-        int minimum = min(curr, min(leftChild, rightChild));
+        int left = getLeftOf(index);
+        int right = getRightOf(index);
+        int minimum = min(curr, min(left, right));
         if (minimum > 0)
         {
             if (getNode(minimum).priority() < getNode(index).priority())
@@ -182,27 +196,28 @@ public class ArrayHeap<T> {
     /* Inserts an item with the given priority value. Same as enqueue, or offer. */
     public void insert(T item, double priority)
     {
-        Node inserting = new Node(item, priority);
-        contents.add(inserting);
-        int sizeOfContents = contents.size() - 1;
-        bubbleUp(sizeOfContents);
+        Node inserted = new Node(item, priority);
+        contents.add(inserted);
+        int s = contents.size() - 1;
+        bubbleUp(s);
     }
 
     /* Returns the Node with the smallest priority value, and removes it from
      * the heap. Same as dequeue, or poll. */
     public Node removeMin()
     {
-        int sizeOfContents = contents.size() - 1;
-        if (contents.size() < 1) {
+        if (contents.size() < 1)
+        {
             return null;
         }
+        int s = contents.size() - 1;
 
-        Node firstNode = peek();
-        Node removeNode = getNode(sizeOfContents);
-        contents.remove(sizeOfContents);
-        setNode(0, removeNode);
+        Node a = peek();
+        Node rem = getNode(s);
+        contents.remove(s);
+        setNode(0, rem);
         bubbleDown(0);
-        return firstNode;
+        return a;
     }
 
     /* Changes the node in this heap with the given item to have the given
@@ -210,17 +225,17 @@ public class ArrayHeap<T> {
      * item. Check for item equality with .equals(), not == */
     public void changePriority(T item, double priority)
     {
-        Node rep = new Node(item, priority);
+        Node repl = new Node(item, priority);
 
         for (int i = 1; i < contents.size(); i++)
         {
-            if (getNode(i).item().equals(item)) {
-                setNode(i, rep);
+            if (getNode(i).item().equals(item))
+            {
+                setNode(i, repl);
                 bubbleDown(i);
                 break;
             }
         }
 
     }
-
 }
