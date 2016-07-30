@@ -185,7 +185,7 @@ public class Graph implements Iterable<Integer>{
             int i = 0;
             //while(!isAdjacent(result.get(i), stopVertex) || ((!isAdjacent(stopVertex, result.get(i))) && (!isAdjacent(result.get(i), stopVertex))))
             //{
-            while(!isAdjacent(stopVertex, result.get(i))) {
+            while(!isAdjacent(result.get(i), stopVertex)) {
                 i++;
             }
             stopVertex = result.get(i);
