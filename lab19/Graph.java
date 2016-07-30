@@ -102,6 +102,7 @@ public class Graph implements Iterable<Integer>{
         public DFSIterator(Integer start) {
             //your code here
             fringe = new Stack<Integer>();
+            visited = new HashSet<Integer>();
             fringe.push(start);
             visited.add(start);
         }
