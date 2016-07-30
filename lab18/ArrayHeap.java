@@ -139,15 +139,15 @@ public class ArrayHeap<T> {
 	 * both nodes are null. */
 	private int min(int index1, int index2) {
 		//YOUR CODE HERE
-        if(getNode(index1) == null & getNode(index2) == null)
-            return -1;
-        if(getNode(index1) == null)
+        if (getNode(index1) != null && getNode(index2) != null)
+        {
+            if (contents.get(index1).priority() <= contents.get(index2).priority())
+            {
+                return index1;
+            }
             return index2;
-        if(getNode(index2) == null)
-            return index1;
-		if(getNode(index1).priority() <= getNode(index2).priority())
-			return index1;
-		return index2;
+        }
+        return 0;
 	}
 
 	/* Returns the Node with the smallest priority value, but does not remove it
