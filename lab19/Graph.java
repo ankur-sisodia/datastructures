@@ -62,9 +62,11 @@ public class Graph implements Iterable<Integer>{
     // return false otherwise.
     public boolean isAdjacent(int from, int to) {
         //your code here
-        for(Edge check : adjLists[from]) {
-            if (check.to == to)
-                return true;
+        if(adjLists != null) {
+            for(Edge check : adjLists[from]) {
+                if (check.to == to)
+                    return true;
+            }
         }
         return false;
     }
