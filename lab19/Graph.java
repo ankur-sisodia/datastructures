@@ -105,6 +105,8 @@ public class Graph implements Iterable<Integer>{
             visited = new HashSet<Integer>();
             fringe.push(start);
             visited.add(start);
+
+            //visited.add(start);
         }
 
         public boolean hasNext() {
@@ -117,21 +119,20 @@ public class Graph implements Iterable<Integer>{
         public Integer next() {
             //your code here
             int topVertex = fringe.pop();
+            visited.add(topVertex);
             for(Object i: neighbors(topVertex)) {
-                if (!visited.contains(topVertex)) {
-                    visited.add(topVertex);
-                    fringe.push((Integer)i);
+                if (!visited.contains(((Edge)i).to())) {
+                    fringe.push(((Edge)i).to());
                 }
             }
             return topVertex;
-        }
 
+        }
         //ignore this method
         public void remove() {
             throw new UnsupportedOperationException(
                     "vertex removal not implemented");
         }
-
     }
 
     // Return the collected result of iterating through this graph's
@@ -266,7 +267,9 @@ public class Graph implements Iterable<Integer>{
         g1.addEdge(2, 3);
         g1.addEdge(4, 3);
         System.out.println("Traversal starting at 0");
+
         result = g1.visitAll(0);
+        System.out.println(result);
         Iterator<Integer> iter;
         iter = result.iterator();
         while (iter.hasNext()) {
