@@ -123,6 +123,7 @@ public class Graph implements Iterable<Integer>{
             for(Object i: neighbors(topVertex)) {
                 if (!visited.contains(((Edge)i).to())) {
                     fringe.push(((Edge)i).to());
+                    visited.add(((Edge)i).to());
                 }
             }
             return topVertex;
