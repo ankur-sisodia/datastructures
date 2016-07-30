@@ -164,20 +164,29 @@ public class Graph implements Iterable<Integer>{
         Iterator<Integer> iter = new DFSIterator(startVertex);
 
         if (startVertex == stopVertex) {
-            result.add(0,startVertex);
+            result.add(startVertex);
             return result;
         }
         if (!pathExists(startVertex, stopVertex))
             return result;
-
 
         while (iter.hasNext()) {
             result.add(iter.next());
             if (result.contains(stopVertex))
                 break;
         }
-        ArrayList<Integer> pathX = new ArrayList<Integer>();
-        //while() {
+        ArrayList<Integer> forwardPath = new ArrayList<Integer>();
+        forwardPath.add(0,stopVertex);
+        while (forwardPath.get(0)!=startVertex) {
+            int i = 0;
+            while(!isAdjacent(result.get(i), stopVertex)) {
+                i++;
+            }
+            stopVertex = result.get(i);
+            forwardPath.add(0,stopVertex);
+        }
+
+
         return result;
 
     }
