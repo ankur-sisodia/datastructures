@@ -8,9 +8,9 @@ import static org.junit.Assert.*;
 public class ArrayHeapTest {
     @Test
     public void peek() throws Exception {
-        ArrayHeap<String> test = new ArrayHeap<String>();
-        test.insert("test1",2.0);
-        assertEquals(test.peek(), "test1");
+        ArrayHeap<Integer> test = new ArrayHeap<Integer>();
+        test.insert(5,2.0);
+        System.out.println("peek: " + test.peek().toString());
     }
 
     @Test

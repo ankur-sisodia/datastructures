@@ -19,7 +19,7 @@ public class ArrayHeap<T> {
 
 	/* Returns the node at index INDEX. */
 	private Node getNode(int index) {
-		if (index >= contents.size()) {
+		if (index > contents.size()) {
 			return null;
 		} else {
 			return contents.get(index);
@@ -32,8 +32,11 @@ public class ArrayHeap<T> {
 		while (index + 1 >= contents.size()) {
 			contents.add(null);
 		}
+        System.out.println("pre set node contents: " + contents.toString());
 		contents.set(index, n);
-	}
+        System.out.println("post set node contents: " + contents.toString());
+
+    }
 
 	/* Swap the nodes at the two indices. */
 	private void swap(int index1, int index2) {
@@ -133,6 +136,12 @@ public class ArrayHeap<T> {
 	 * both nodes are null. */
 	private int min(int index1, int index2) {
 		//YOUR CODE HERE
+        if(getNode(index1) == null & getNode(index2) == null)
+            return -1;
+        if(getNode(index1) == null)
+            return index2;
+        if(getNode(index2) == null)
+            return index1;
 		if(getNode(index1).priority() <= getNode(index2).priority())
 			return index1;
 		return index2;
@@ -142,35 +151,66 @@ public class ArrayHeap<T> {
 	 * from the heap. */
 	public Node peek() {
 		//YOUR CODE HERE
+        if(contents.size() < 2) {
+            return contents.get(0);
+        }
 		return getNode(1);
 	}
 
 	/* Bubbles up the node currently at the given index. */
 	private void bubbleUp(int index) {
 		//YOUR CODE HERE
-		swap(index, getParentOf(index));
+        while (getParentOf(index) != -1 && (getNode(index).priority() >= getNode(getParentOf(index)).priority())) {
+            swap(index, getParentOf(index));
+            index = index/2;
+        }
 	}
 
 	/* Bubbles down the node currently at the given index. */
 	private void bubbleDown(int index) {
 		//YOUR CODE HERE
-		int minChild = min(getLeftOf(index), getRightOf(index));
-		swap(index, minChild);
+        int min;
+        while(!(getLeftOf(index) == -1 && getRightOf(index) == -1) ||
+                getNode(index).priority() > getNode(min(getLeftOf(index),getLeftOf(index))).priority()) {
+            min = min(getLeftOf(index),getLeftOf(index));
+            swap(index,min);
+            index = min;
+        }
+
+        /*while (getNode(index).priority() > getNode(min(getNode(getLeftOf(index)).priority()
+                ,getNode(getRightOf(index)).priority()))) {
+            swap(index, getParentOf(index));
+        }
+        if (getLeftOf(index) == -1 && getRightOf(index) == -1)
+            return;
+        if (getRightOf(index) == -1)
+            swap(index,getRightOf(index));
+		swap(index, min(getLeftOf(index), getRightOf(index)));*/
 	}
 
 	/* Inserts an item with the given priority value. Same as enqueue, or offer. */
 	public void insert(T item, double priority) {
 		//YOUR CODE HERE
 		Node newNode = new Node(item, priority);
-		setNode(contents.size()+1,newNode);
-		bubbleUp(contents.size());
+        int index = 1;
+        for (int i = 1; i < contents.size(); i++) {
+            index = i;
+            if (contents.get(index) == null)
+                break;
+        }
+        //contents.add(newNode);
+        setNode(index,newNode);
 	}
 
 	/* Returns the Node with the smallest priority value, and removes it from
 	 * the heap. Same as dequeue, or poll. */
 	public Node removeMin() {
 		//YOUR CODE HERE
-		return getNode(1);
+        Node node = peek();
+        contents.set(0, contents.get(contents.size() - 1));
+        contents.set(contents.size()-1, null);
+        bubbleDown(0);
+		return node;
 	}
 
 	/* Changes the node in this heap with the given item to have the given
