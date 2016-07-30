@@ -76,7 +76,6 @@ public class Graph implements Iterable<Integer>{
     public List neighbors(int vertex) {
         // your code here
         return adjLists[vertex];
-
     }
 
     // Return the number of incoming vertices for the given vertex,
@@ -184,9 +183,9 @@ public class Graph implements Iterable<Integer>{
         forwardPath.add(0,stopVertex);
         while (forwardPath.get(0)!=startVertex) {
             int i = 0;
-            while(!isAdjacent(result.get(i), stopVertex) || ((!isAdjacent(stopVertex, result.get(i))) && (!isAdjacent(result.get(i), stopVertex))))
-            {
-            //while(!isAdjacent(result.get(i), stopVertex)) {
+            //while(!isAdjacent(result.get(i), stopVertex) || ((!isAdjacent(stopVertex, result.get(i))) && (!isAdjacent(result.get(i), stopVertex))))
+            //{
+            while(!isAdjacent(stopVertex, result.get(i))) {
                 i++;
             }
             stopVertex = result.get(i);
