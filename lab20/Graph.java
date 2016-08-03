@@ -1,26 +1,17 @@
+/**
+ * Created by asisodia on 8/1/16.
+ */
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Spliterator;
-import java.util.Stack;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.ToDoubleFunction;
-import java.util.function.ToIntFunction;
-import java.util.function.ToLongFunction;
+import java.util.*;
 
 public class Graph implements Iterable<Integer>{
 
     private LinkedList<Edge>[] adjLists;
     private int vertexCount;
     private int startVertex;
-
     // Initialize a graph with the given number of vertices and no edges.
     public Graph(int numVertices) {
         adjLists = new LinkedList[numVertices];
@@ -42,65 +33,154 @@ public class Graph implements Iterable<Integer>{
 
 
     // Add to the graph a directed edge from vertex v1 to vertex v2.
-    public void addEdge(int v1, int v2) {
+    public void addEdge(int v1, int v2)
+    {
         addEdge(v1, v2, null);
     }
 
     // Add to the graph an undirected edge from vertex v1 to vertex v2.
-    public void addUndirectedEdge(int v1, int v2) {
+    public void addUndirectedEdge(int v1, int v2)
+    {
         addUndirectedEdge(v1, v2, null);
     }
 
     // Add to the graph a directed edge from vertex v1 to vertex v2,
     // with the given edge information.
-    public void addEdge(int v1, int v2, Object edgeInfo) {
-        Edge temp = new Edge(v1, v2, edgeInfo);
-        adjLists[v1].add(temp);
+    public void addEdge(int v1, int v2, Object edgeInfo)
+    {
+
+        Edge e = new Edge(v1, v2, edgeInfo);
+        adjLists[v1].add(e);
     }
 
+    public ArrayList<Integer> shortestPath(int startVertex, int endVertex)
+    {
+
+        if (!pathExists(startVertex, endVertex))
+        {
+            return null;
+        }
+
+        PriorityQueue<Edge> fringe = new PriorityQueue<>();
+
+        ArrayList<Integer> arrInt = new ArrayList<>();
+
+        int[] len = new int[adjLists.length];
+        int[] orig = new int[adjLists.length];
+
+        boolean[] seen = new boolean[adjLists.length];
+
+        for (int i = 0; i < len.length; i++)
+        {
+            len[i] = Integer.MAX_VALUE;
+        }
+
+        List<Edge> listN = neighbors(startVertex);
+
+        for (Edge edge : listN)
+        {
+            int nodeV = edge.to();
+
+            fringe.add(edge);
+
+            len[nodeV] = (Integer) edge.edgeInfo;
+
+            orig[nodeV] = startVertex;
+        }
+
+        Edge check = new Edge(startVertex, startVertex, 0);
+
+        len[startVertex] = 0;
+
+        fringe.add(check);
+
+        while (!fringe.isEmpty())
+        {
+            Edge next = fringe.poll();
+
+            int pnt = next.to();
+            seen[pnt] = true;
+
+            if (pnt == endVertex)
+            {
+                break;
+            }
+
+            List<Edge> listV = neighbors(pnt);
+
+            for (Edge ptr : listV)
+            {
+                int nextV = ptr.to();
+
+                if (!seen[nextV])
+                {
+
+                    int len2 = len[pnt] + (Integer) ptr.edgeInfo;
+                    if (len[nextV] == Integer.MAX_VALUE)
+                    {
+                        fringe.add(ptr);
+
+                        len[nextV] = len2;
+
+                        orig[nextV] = pnt;
+                    }
+                    else if (len2 < len[nextV])
+                    {
+                        len[nextV] = len2;
+                        orig[nextV] = pnt;
+                        Edge smaller = new Edge(pnt, nextV, ptr.edgeInfo);
+                        fringe.add(smaller);
+                    }
+                }
+            }
+        }
+        int nextNode = endVertex;
+        arrInt.add(nextNode);
+        while (nextNode != startVertex) {
+            arrInt.add(0, orig[nextNode]);
+            nextNode = orig[nextNode];
+        }
+        return arrInt;
+    }
     // Add to the graph an undirected edge from vertex v1 to vertex v2,
     // with the given edge information.
-    public void addUndirectedEdge(int v1, int v2, Object edgeInfo) {
-        //your code here
-        Edge temp1 = new Edge(v1, v2, edgeInfo);
-        Edge temp2 = new Edge(v2, v1, edgeInfo);
-        adjLists[v1].add(temp1);
-        adjLists[v2].add(temp2);
+    public void addUndirectedEdge(int v1, int v2, Object edgeInfo){
+        Edge e1 = new Edge(v1, v2, edgeInfo);
+        Edge e2 = new Edge(v2, v1, edgeInfo);
+        adjLists[v1].add(e1);
+        adjLists[v2].add(e2);
     }
-
     // Return true if there is an edge from vertex "from" to vertex "to";
     // return false otherwise.
-    public boolean isAdjacent(int from, int to) {
-        //your code here
-        return pathExists(from, to);
+    public boolean isAdjacent(int from, int to){
+        List vFrom = neighbors(from);
+        ArrayList<Integer> vTo = new ArrayList<>();
+        for (Object edge : vFrom){
+            vTo.add(((Edge) edge).to());
+        }
+        if (vTo.contains(to)){
+            return true;
+        }
+        return false;
     }
 
     // Returns a list of all the neighboring  vertices 'u'
     // such that the edge (VERTEX, 'u') exists in this graph.
-    public List neighbors(int vertex) {
-        // your code here
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (Edge e : adjLists[vertex]) {
-            list.add(e.to);
+    public List neighbors(int vertex) //change back to regular List don't use subtype of Integer
+	{
+        ArrayList<Edge> listN = new ArrayList<>();
+        for (Edge edge : adjLists[vertex])   {
+            listN.add(edge);
         }
-        return list;
+        return listN;
     }
-
     // Return the number of incoming vertices for the given vertex,
     // i.e. the number of vertices v such that (v, vertex) is an edge.
-    public int inDegree(int vertex) {
-        int count = 0;
-        //your code here
-        for (int i = 0; i < adjLists.length; i++) {
-            for (Edge e : adjLists[i]) {
-                if (e.to == vertex) {
-                    count++;
-                }
-            }
-        }
+    public int inDegree(int vertex){
+        int count;
+        count = adjLists[vertex].size();
         return count;
     }
-
     public Iterator<Integer> iterator(){
         return new TopologicalIterator();
     }
@@ -110,44 +190,35 @@ public class Graph implements Iterable<Integer>{
     // at a vertex v, and there is no path from v to a vertex w, then the iteration will not
     // include w
     private class DFSIterator implements Iterator<Integer> {
+        private Stack<Integer> fringe;
+        private HashSet<Integer> visited;
 
-        private Stack<Integer> fringe = new Stack<Integer>();
-        private HashSet<Integer> visited = new HashSet<Integer>();
-
-        public DFSIterator(Integer start) {
-            //your code here
+        public DFSIterator(Integer start)        {
+            fringe = new Stack<>();
+            visited = new HashSet<>();
             fringe.push(start);
             visited.add(start);
         }
 
         public boolean hasNext() {
-            //your code here
-            return !fringe.isEmpty();
+            return fringe.size() > 0;
         }
-
         public Integer next() {
-            //your code here
-            Integer next = fringe.pop();
-            visited.add(next);
-            for (Edge e : adjLists[next]) {
-                if (!visited.contains(e.to)) {
-                    fringe.push(e.to);
-                    visited.add(e.to);
+            int top = fringe.pop();
+            visited.add(top);
+            for (Object i: neighbors(top)){
+                if (!visited.contains((((Edge)i).to()))){
+                    fringe.push(((Edge) i).to());
+                    visited.add(((Edge) i).to());
                 }
             }
-            return next;
+            return top;
         }
-        
+
         //ignore this method
         public void remove() {
             throw new UnsupportedOperationException(
                     "vertex removal not implemented");
-        }
-
-        @Override
-        public void forEachRemaining(Consumer<? super Integer> action) {
-            // TODO Auto-generated method stub
-            
         }
     }
 
@@ -156,260 +227,55 @@ public class Graph implements Iterable<Integer>{
     public ArrayList<Integer> visitAll(int startVertex) {
         ArrayList<Integer> result = new ArrayList<Integer>();
         Iterator<Integer> iter = new DFSIterator(startVertex);
-
         while (iter.hasNext()) {
             result.add(iter.next());
         }
         return result;
     }
-
-    // Returns true iff there exists a path from STARVETEX to
+    // Returns true iff there exists a path from STARTVETEX to
     // STOPVERTEX. Assumes both STARTVERTEX and STOPVERTEX are
-    // in this graph. If STARVERTEX == STOPVERTEX, returns true.
-    public boolean pathExists(int startVertex, int stopVertex) {
-        // your code here
-        ArrayList<Integer> startVisit = visitAll(startVertex);
-        
-        return startVisit.contains(stopVertex);
+    // in this graph. If STARTVERTEX == STOPVERTEX, returns true.
+    public boolean pathExists(int startVertex, int stopVertex){
+        ArrayList<Integer> visited = visitAll(startVertex);
+        if (visited.contains(stopVertex)){
+            return true;
+        }
+        return false;
     }
-
 
     // Returns the path from startVertex to stopVertex.
     // If no path exists, returns an empty arrayList.
     // If startVertex == stopVertex, returns a one element arrayList.
-    public ArrayList<Integer> path(int startVertex, int stopVertex) {
-        // you supply the body of this method
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        Iterator<Integer> iter = new DFSIterator(startVertex);
-
-        if (startVertex == stopVertex) {
+    public ArrayList<Integer> path(int startVertex, int stopVertex){
+        int start = startVertex;
+        int stop = stopVertex;
+        Iterator<Integer> iter = new DFSIterator(start);
+        ArrayList<Integer> neighbor = new ArrayList<>();
+        ArrayList<Integer> result = new ArrayList<>();
+        if (startVertex == stopVertex){
             result.add(startVertex);
             return result;
         }
-        if (!pathExists(startVertex, stopVertex))
+        if (!pathExists(startVertex, stopVertex)){
             return result;
-
-        while (iter.hasNext()) {
-            result.add(iter.next());
-            if (result.contains(stopVertex))
-                break;
         }
-        ArrayList<Integer> forwardPath = new ArrayList<Integer>();
-        forwardPath.add(0,stopVertex);
-        while (forwardPath.get(0)!=startVertex) {
-            int i = 0;
-            //while(!isAdjacent(result.get(i), stopVertex) || ((!isAdjacent(stopVertex, result.get(i))) && (!isAdjacent(result.get(i), stopVertex))))
-            //{
-            while(!isAdjacent(result.get(i), stopVertex)) {
-                i++;
-            }
-            stopVertex = result.get(i);
-            forwardPath.add(0,stopVertex);
-        }
-
-
-        return result;
-
-    }
-    
-    HashMap<Integer, Integer> distances;
-    
-    public Edge getEdge(int start, int end) {
-        for (Edge edge : adjLists[start]) {
-            if (edge.to == end) {
-                return edge;
-            }
-        }
-        return null;
-    }
-    
-    public ArrayList<Integer> shortestPath(int startVertex, int endVertex){
-        //your code here...
-        Comparator<Integer> comparator = new IntegerComparator();
-        distances = new HashMap<Integer, Integer>();
-        PriorityQueue<Integer> fringe = new PriorityQueue<Integer>(10, comparator);
-        ArrayList<Integer> path = new ArrayList<Integer>();
-        ArrayList<Integer> visited = new ArrayList<Integer>();
-        ArrayList<Integer> neighbors = new ArrayList<Integer>();
-        
-        int[] vertexDistance = new int[adjLists.length];
-        
-        Integer pred = 0;
-        Integer distance = 0;
-        
-        distances.put(startVertex, 0);
-        fringe.add(startVertex);
-        
-        while (!fringe.isEmpty()) {
-            Integer v = fringe.poll();
-            
-            if (v == endVertex) {
+        while (iter.hasNext()){
+            start = iter.next();
+            result.add(start);
+            if (result.contains(stopVertex)){
                 break;
             }
-            
-            if (visited.contains(v)) {
-                continue;
+        }
+        neighbor.add(result.get(result.size() - 1));
+        int last = stopVertex;
+        int first = startVertex;
+        for (int i = result.size() - 2; i >= 0; i--){
+            if (neighbors(result.get(i)).contains(last) && neighbors(result.get(i)).contains(first)){
+                last = result.get(i);
+                neighbor.add(0, last);
             }
-            
-            visited.add(v);
-            neighbors = (ArrayList<Integer>) neighbors(v);
-            
-            for (Integer w : neighbors) {
-                if (visited.contains(w)) {
-                    continue;
-                }
-                if (!fringe.contains(w)) {
-                    distance = distances.get(v);
-                    distance += (int) getEdge(v, w).edgeInfo;
-                    distances.put(w, distance);
-                    fringe.add(w);
-                    vertexDistance[w] = v;
-                } else {
-                    pred = distances.get(w);
-                    distance = distances.get(v);
-                    distance += (int) getEdge(v, w).edgeInfo;
-                    vertexDistance[w] = v;
-                    if (distance < pred) {
-                        distances.put(w, distance);
-                    } else {
-                        continue;
-                    }
-                }
-
-                }
-
-            }
-        
-        int curr = endVertex;
-        
-        while (curr != startVertex) {
-            path.add(curr);
-            curr = vertexDistance[curr];
         }
-        
-        path.add(startVertex);
-        
-        Collections.reverse(path);
-        
-        return path;
-    }
-    
-    public class IntegerComparator implements Comparator<Integer>
-    {
-        @Override
-        public int compare(Integer x, Integer y)
-        {
-            
-            int xVal = distances.get(x);
-            int yVal = distances.get(y);
-            
-            if (xVal < yVal)
-            {
-                return -1;
-            }
-            if (xVal > yVal)
-            {
-                return 1;
-            }
-            return 0;
-        }
-
-        @Override
-        public Comparator<Integer> reversed() {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        @Override
-        public Comparator<Integer> thenComparing(
-                Comparator<? super Integer> other) {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        @Override
-        public <U> Comparator<Integer> thenComparing(
-                Function<? super Integer, ? extends U> keyExtractor,
-                Comparator<? super U> keyComparator) {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        @Override
-        public <U extends Comparable<? super U>> Comparator<Integer> thenComparing(
-                Function<? super Integer, ? extends U> keyExtractor) {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        @Override
-        public Comparator<Integer> thenComparingInt(
-                ToIntFunction<? super Integer> keyExtractor) {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        @Override
-        public Comparator<Integer> thenComparingLong(
-                ToLongFunction<? super Integer> keyExtractor) {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        @Override
-        public Comparator<Integer> thenComparingDouble(
-                ToDoubleFunction<? super Integer> keyExtractor) {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        public <T extends Comparable<? super T>> Comparator<T> naturalOrder() {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        public <T> Comparator<T> nullsFirst(
-                Comparator<? super T> comparator) {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        public <T> Comparator<T> nullsLast(
-                Comparator<? super T> comparator) {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        public <T, U> Comparator<T> comparing(
-                Function<? super T, ? extends U> keyExtractor,
-                Comparator<? super U> keyComparator) {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        public <T, U extends Comparable<? super U>> Comparator<T> comparing(
-                Function<? super T, ? extends U> keyExtractor) {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        public <T> Comparator<T> comparingInt(
-                ToIntFunction<? super T> keyExtractor) {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        public <T> Comparator<T> comparingLong(
-                ToLongFunction<? super T> keyExtractor) {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        public <T> Comparator<T> comparingDouble(
-                ToDoubleFunction<? super T> keyExtractor) {
-            // TODO Auto-generated method stub
-            return null;
-        }
+        return neighbor;
     }
 
     public ArrayList<Integer> topologicalSort() {
@@ -422,77 +288,43 @@ public class Graph implements Iterable<Integer>{
     }
 
     private class TopologicalIterator implements Iterator<Integer> {
-
         private Stack<Integer> fringe;
-        private HashMap<Integer, Integer> currentInDegree;
-        ArrayList<Integer> results;
-
-        // more instance variables go here
+        private int[] currentInDegree = new int[adjLists.length];
 
         public TopologicalIterator() {
-            fringe = new Stack<Integer>();
-            // more statements go here
-            currentInDegree = new HashMap<Integer, Integer>();
-            results = new ArrayList<Integer>();
-            Integer degree;
-            
-            for (int i = 0; i < adjLists.length; i++) {
-                for (Edge e : adjLists[i]) {
-                    degree = inDegree(e.to);
-                    
-                    if (!currentInDegree.containsKey(e.to)) {
-                        currentInDegree.put(e.to, degree);
-                    }
-                    
-                    if (degree == 0) {
-                        fringe.add(e.to);
-                    }
+            fringe = new Stack<>();
+            for (int i = 0; i < adjLists.length; i++){
+                currentInDegree[i] = inDegree(i);
+                if (inDegree(i) == 0){
+                    fringe.push(i);
                 }
             }
         }
 
-        public boolean hasNext() {
+        public boolean hasNext(){
             return !fringe.isEmpty();
         }
 
         public Integer next() {
-            // you supply the real body of this method
-            Integer next = fringe.pop();
-            results.add(next);
-            ArrayList<Integer> list = (ArrayList<Integer>) neighbors(next);
-            int val;
-            for (Integer i : list) {
-                if (currentInDegree.containsKey(i)) {
-                    val = currentInDegree.get(i);
-                    currentInDegree.replace(i, val - 1);
+            Integer nextInt = fringe.pop();
+            List<Integer> listN = neighbors(nextInt);
+            for (Object o : listN) {
+                currentInDegree[((Edge) o).to()]--;
+                if (currentInDegree[((Edge) o).to()] == 0) {
+                    fringe.push(((Edge) o).to());
                 }
             }
-            for (HashMap.Entry<Integer, Integer> entry : currentInDegree.entrySet()) {
-                Integer key = entry.getKey();
-                Integer value = entry.getValue();
-                
-                if (value == 0) {
-                    fringe.add(key);
-                }
-            }
-            return next;
+            return nextInt;
         }
 
         public void remove() {
             throw new UnsupportedOperationException(
                     "vertex removal not implemented");
         }
-
-        @Override
-        public void forEachRemaining(Consumer<? super Integer> action) {
-            // TODO Auto-generated method stub
-            
-        }
-
     }
 
-    private class Edge {
-
+    private class Edge implements Comparable<Edge>
+    {
         private Integer from;
         private Integer to;
         private Object edgeInfo;
@@ -509,6 +341,23 @@ public class Graph implements Iterable<Integer>{
 
         public Object info() {
             return edgeInfo;
+        }
+
+        @Override
+        public int compareTo(Edge e)
+        {
+            if ((Integer) this.edgeInfo < (Integer) e.info())
+            {
+                return -1;
+            }
+            else if ((Integer) this.edgeInfo > (Integer) e.info())
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public String toString() {
@@ -529,6 +378,7 @@ public class Graph implements Iterable<Integer>{
         g1.addEdge(2, 3);
         g1.addEdge(4, 3);
         System.out.println("Traversal starting at 0");
+
         result = g1.visitAll(0);
         Iterator<Integer> iter;
         iter = result.iterator();
@@ -615,17 +465,4 @@ public class Graph implements Iterable<Integer>{
             System.out.println(iter.next() + " ");
         }
     }
-
-    @Override
-    public void forEach(Consumer<? super Integer> action) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public Spliterator<Integer> spliterator() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }
