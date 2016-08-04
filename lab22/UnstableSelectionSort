@@ -2,8 +2,7 @@ import java.util.Arrays;
 import java.util.*;
 
 public class UnstableSelectionSort {
-
 	public static void selectionSort(Comparable[] arr) {
-		Collections.sort(arr);
+		Arrays.sort(arr);
 	}
 }
