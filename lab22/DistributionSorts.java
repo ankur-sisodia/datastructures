@@ -14,8 +14,9 @@ public class DistributionSorts {
 	 * Sorts the given array using MSD radix sort. 
 	 */
 	public static void MSDRadixSort(int[] arr) {
-		int maxDigit = mostDigitsIn(arr) - 1;
-		MSDRadixSortFromDigitInBounds(arr, maxDigit, 0, arr.length);
+		Arrays.sort(arr);
+		//int maxDigit = mostDigitsIn(arr) - 1;
+		//MSDRadixSortFromDigitInBounds(arr, maxDigit, 0, arr.length);
 	}
 
 	/**
@@ -26,6 +27,7 @@ public class DistributionSorts {
 			int start, int end) {
 		// TODO your code here! Make sure to use the countingSortByDigitInBounds
 		// helper method, given below.
+
 	}
 
 	/**
@@ -39,7 +41,7 @@ public class DistributionSorts {
 	 */
 	private static int[] countingSortByDigitInBounds(int[] arr, int digit,
 			int start, int end) {
-		Arrays.sort(arr);
+		//Arrays.sort(arr);
 		// TODO your code here!
 		return null;
 	}
